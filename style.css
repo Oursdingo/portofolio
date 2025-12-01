@@ -478,6 +478,8 @@ header.sticky {
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
   gap: 2rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .portfolio-box {
