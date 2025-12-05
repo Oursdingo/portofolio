@@ -223,7 +223,7 @@ header.sticky {
 }
 
 .home img {
-  width: 35vw;
+  width: 50vw;
   max-width: 100%;
   height: auto;
   animation: animimg 4s ease-in-out infinite;
@@ -290,7 +290,7 @@ header.sticky {
   background: var(--bg2);
 }
 .about img {
-  width: 65vw;
+  width: 95vw;
   max-width: 100%;
   height: auto;
 }
