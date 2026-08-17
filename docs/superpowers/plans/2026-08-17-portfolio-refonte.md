@@ -28,7 +28,7 @@ Valeurs reprises telles quelles de la spec. Elles s'appliquent à **toutes** les
 - **Palette sombre :** `--bg #0B0D12` · `--surface #12151C` · `--text #E8EAF0` · `--text-muted #9AA3B2` · `--accent #818CF8` · `--border rgba(255,255,255,.09)` · `--logo-red #F05252`
 - **Polices :** Sora (titres, 600–700) · Inter (corps, 400–600) · JetBrains Mono (labels, 500)
 - **Budget :** premier chargement < 800 Ko · LCP < 1,5 s · Lighthouse Performance ≥ 95 · Accessibilité ≥ 95
-- **Images :** 1200 px de large maximum, WebP qualité 82, repli PNG. **Les originaux ne sont jamais écrasés.**
+- **Images :** 1200 px de large maximum, WebP qualité 82. Repli PNG pour les portraits détourés, JPEG qualité 82 pour les captures opaques. **Les originaux ne sont jamais écrasés.**
 - **Contraste :** WCAG AA sur les deux thèmes (4.5:1 texte courant, 3:1 texte large)
 - **`prefers-reduced-motion` :** Lenis non instancié, GSAP réduit aux changements d'opacité, marquees figés
 - **Contenu :** aucune donnée absente du CV. Ordre des projets imposé (spec §4.4), non négociable.
@@ -2120,7 +2120,7 @@ La carte 3 (Luxonera) s'insère **entre** DAICE et E-Wari. Les cartes 8 et 9 von
   <div class="project-card__thumb">
     <picture>
       <source srcset="images/optimized/luxonera.webp" type="image/webp" />
-      <img src="images/optimized/luxonera.png" alt="Interface de la plateforme Luxonera"
+      <img src="images/optimized/luxonera.jpg" alt="Interface de la plateforme Luxonera"
            width="1200" height="563" loading="lazy" />
     </picture>
   </div>
@@ -2149,7 +2149,7 @@ La carte 3 (Luxonera) s'insère **entre** DAICE et E-Wari. Les cartes 8 et 9 von
   <div class="project-card__thumb">
     <picture>
       <source srcset="images/optimized/etrack.webp" type="image/webp" />
-      <img src="images/optimized/etrack.png" alt="Tableau de bord de l'application eTrack"
+      <img src="images/optimized/etrack.jpg" alt="Tableau de bord de l'application eTrack"
            width="1200" height="675" loading="lazy" />
     </picture>
   </div>

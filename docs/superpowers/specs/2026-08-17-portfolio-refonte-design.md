@@ -207,7 +207,7 @@ js/
   animations.js       Lenis + GSAP + ScrollTrigger
   main.js             orchestration (module ES)
 images/
-  optimized/          WebP générés, avec repli PNG
+  optimized/          WebP générés, avec repli PNG ou JPEG selon le contenu
 docs/superpowers/specs/
 ```
 
@@ -299,9 +299,17 @@ Traitement automatisé via Pillow (10.4.0, déjà installé) :
 
 - redimensionnement à **1200 px de large maximum** — le double de la taille
   d'affichage, pour rester net sur écran haute densité
-- conversion WebP qualité 82
-- repli PNG optimisé, servi via `<picture>`
+- conversion WebP qualité 82, servi via `<picture>`
+- repli au format choisi selon le contenu, mesuré sur les sources :
+  - les deux portraits sont détourés (73 % et 82 % de pixels non opaques) →
+    **PNG**, la transparence est indispensable
+  - les trois captures sont intégralement opaques → **JPEG** qualité 82, un
+    PNG y coûterait 3 à 7 fois le poids pour un rendu identique
 - portraits ramenés à 800 px
+
+Un navigateur télécharge le WebP **ou** le repli, jamais les deux : seul le
+WebP entre dans le budget transféré. Les replis sont plafonnés à 400 Ko, un
+seuil de dérive et non un objectif.
 
 **Les originaux ne sont jamais écrasés** : les fichiers générés vont dans
 `images/optimized/`.
