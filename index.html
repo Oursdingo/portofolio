@@ -93,8 +93,8 @@
       <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M12 3 1 8l11 5 9-4.09V16h2V8L12 3ZM5 13.18v3.82L12 21l7-4v-3.82l-7 3.18-7-3.18Z"/></symbol>
       <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M9 3h6a1 1 0 0 1 1 1v2h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4V4a1 1 0 0 1 1-1Zm1 3h4V5h-4v1ZM5 8v10h14V8H5Z"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="M9.6 16.2 4.8 11.4l1.4-1.4 3.4 3.4 8-8 1.4 1.4-9.4 9.4Z"/></symbol>
-      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8V5Zm5 0h3v14h-3V5Z"/></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.14v13.72L19 12 8 5.14Z"/></symbol>
+      <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15.4 6.4 9.8 12l5.6 5.6-1.4 1.4L7 12l7-7 1.4 1.4Z"/></symbol>
+      <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M8.6 6.4 10 5l7 7-7 7-1.4-1.4L14.2 12 8.6 6.4Z"/></symbol>
 
       <!-- Logos de technologies : generes par scripts/fetch_tech_icons.py.
            Ne pas editer a la main, le script ecrase ce bloc. -->
@@ -314,74 +314,113 @@
             <div class="carousel__track" id="services-track">
 
               <article class="service" aria-labelledby="service-dev">
+                <div class="service__content">
                 <svg class="service__icon" aria-hidden="true"><use href="#i-code" /></svg>
                 <h3 class="service__title" id="service-dev">Développement</h3>
-                <p class="service__text">
-                  Je conçois et développe des applications sur mesure, du site
-                  vitrine à la plateforme métier complexe, sur le web comme sur
-                  mobile. J'interviens sur toute la chaîne : comprendre le besoin
-                  réel, concevoir une architecture qui tiendra dans le temps,
-                  construire l'interface et les services qui la font tourner,
-                  sécuriser les accès, mettre en production et accompagner
-                  ensuite.
-                </p>
-                <p class="service__text">
-                  Je travaille avec une exigence constante sur la performance, la
-                  fiabilité et la clarté du code — pour que ce que je livre reste
-                  maintenable et puisse évoluer sans se casser.
-                </p>
+                <p class="service__text">Je conçois et développe des applications sur mesure, du site vitrine à la plateforme métier complexe, sur le web comme sur mobile. J'interviens sur toute la chaîne : comprendre le besoin réel, concevoir une architecture qui tiendra dans le temps, construire l'interface et les services qui la font tourner, sécuriser les accès, mettre en production et accompagner ensuite.</p>
+                <p class="service__text">Je travaille avec une exigence constante sur la performance, la fiabilité et la clarté du code — pour que ce que je livre reste maintenable et puisse évoluer sans se casser.</p>
+                </div>
+                <div class="service__visual" aria-hidden="true">
+              <svg class="service__art" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+                  <rect x="18" y="34" width="272" height="188" rx="14" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2" />
+                  <path d="M18 64h272" stroke="var(--border-strong)" stroke-width="2" />
+                  <circle cx="38" cy="49" r="4.5" fill="var(--accent)" />
+                  <circle cx="54" cy="49" r="4.5" fill="var(--border-strong)" />
+                  <circle cx="70" cy="49" r="4.5" fill="var(--border-strong)" />
+                  <rect x="34" y="82" width="58" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="34" y="102" width="42" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="34" y="122" width="52" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="34" y="142" width="38" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="116" y="82" width="146" height="10" rx="5" fill="var(--accent)" opacity=".55" />
+                  <rect x="116" y="102" width="104" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="132" y="122" width="118" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="132" y="142" width="82" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="116" y="162" width="132" height="10" rx="5" fill="var(--border-strong)" />
+                  <rect x="116" y="182" width="64" height="10" rx="5" fill="var(--accent)" opacity=".35" />
+                  <rect x="252" y="112" width="108" height="166" rx="18" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5" />
+                  <rect x="290" y="126" width="32" height="5" rx="2.5" fill="var(--accent)" />
+                  <rect x="270" y="152" width="72" height="9" rx="4.5" fill="var(--border-strong)" />
+                  <rect x="270" y="170" width="48" height="9" rx="4.5" fill="var(--border-strong)" />
+                  <rect x="270" y="194" width="72" height="38" rx="9" fill="var(--accent)" opacity=".2" />
+                  <rect x="270" y="246" width="72" height="9" rx="4.5" fill="var(--border-strong)" />
+                </svg>
+                </div>
               </article>
 
               <article class="service" aria-labelledby="service-ia">
+                <div class="service__content">
                 <svg class="service__icon" aria-hidden="true"><use href="#i-sparkle" /></svg>
                 <h3 class="service__title" id="service-ia">Intégration d'intelligence artificielle</h3>
-                <p class="service__text">
-                  J'intègre l'intelligence artificielle au cœur des applications,
-                  là où elle fait réellement gagner du temps plutôt que là où
-                  elle fait joli. Analyse et extraction automatique
-                  d'informations dans des documents, génération de contenu, aide
-                  à la décision, recherche intelligente.
-                </p>
-                <p class="service__text">
-                  Je conçois les services qui font le pont entre les modèles et
-                  vos outils métier, avec un souci permanent de la fiabilité des
-                  résultats et de la maîtrise des coûts d'usage.
-                </p>
+                <p class="service__text">J'intègre l'intelligence artificielle au cœur des applications, là où elle fait réellement gagner du temps plutôt que là où elle fait joli. Analyse et extraction automatique d'informations dans des documents, génération de contenu, aide à la décision, recherche intelligente.</p>
+                <p class="service__text">Je conçois les services qui font le pont entre les modèles et vos outils métier, avec un souci permanent de la fiabilité des résultats et de la maîtrise des coûts d'usage.</p>
+                </div>
+                <div class="service__visual" aria-hidden="true">
+              <svg class="service__art" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+                  <g stroke="var(--border-strong)" stroke-width="1.8">
+                    <path d="M76 82 190 68M76 82 190 150M76 82 190 232M76 150 190 68M76 150 190 150M76 150 190 232M76 218 190 150M76 218 190 232" />
+                    <path d="M190 68 310 110M190 150 310 110M190 150 310 196M190 232 310 196" />
+                  </g>
+                  <g fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2.5">
+                    <circle cx="76" cy="82" r="15" />
+                    <circle cx="76" cy="150" r="15" />
+                    <circle cx="76" cy="218" r="15" />
+                  </g>
+                  <g fill="var(--bg)" stroke="var(--accent)" stroke-width="2.5">
+                    <circle cx="190" cy="68" r="17" />
+                    <circle cx="190" cy="232" r="17" />
+                  </g>
+                  <circle cx="190" cy="150" r="21" fill="var(--accent)" />
+                  <g fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2.5">
+                    <circle cx="310" cy="110" r="15" />
+                    <circle cx="310" cy="196" r="15" />
+                  </g>
+                  <path d="M330 46l5.5 15.5L351 67l-15.5 5.5L330 88l-5.5-15.5L309 67l15.5-5.5L330 46Z" fill="var(--accent)" />
+                  <path d="M62 252l3.5 9.5L75 265l-9.5 3.5L62 278l-3.5-9.5L49 265l9.5-3.5L62 252Z" fill="var(--accent)" opacity=".55" />
+                </svg>
+                </div>
               </article>
 
               <article class="service" aria-labelledby="service-formation">
+                <div class="service__content">
                 <svg class="service__icon" aria-hidden="true"><use href="#i-graduation" /></svg>
                 <h3 class="service__title" id="service-formation">Formation</h3>
-                <p class="service__text">
-                  Je forme les équipes et les personnes qui débutent au
-                  développement moderne. Les fondamentaux d'abord, puis les
-                  pratiques qui font la différence sur la durée : structurer son
-                  code, travailler à plusieurs sans se marcher dessus, maîtriser
-                  ses outils du quotidien.
-                </p>
-                <p class="service__text">
-                  Je m'adapte au niveau réel des participants et je privilégie la
-                  pratique : on apprend en construisant quelque chose qui
-                  fonctionne.
-                </p>
-                <a class="service__link" href="https://www.facebook.com/share/v/1Ewaoy9zYP/"
-                  target="_blank" rel="noopener noreferrer">
+                <p class="service__text">Je forme les équipes et les personnes qui débutent au développement moderne. Les fondamentaux d'abord, puis les pratiques qui font la différence sur la durée : structurer son code, travailler à plusieurs sans se marcher dessus, maîtriser ses outils du quotidien.</p>
+                <p class="service__text">Je m'adapte au niveau réel des participants et je privilégie la pratique : on apprend en construisant quelque chose qui fonctionne.</p>
+                <a class="service__link" href="https://www.facebook.com/share/v/1Ewaoy9zYP/" target="_blank" rel="noopener noreferrer">
                   Voir une session
                   <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
                 </a>
+                </div>
+                <div class="service__visual" aria-hidden="true">
+              <svg class="service__art" viewBox="0 0 400 300" fill="none" aria-hidden="true">
+                  <rect x="66" y="26" width="268" height="168" rx="14" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2" />
+                  <path d="M200 194v22" stroke="var(--border-strong)" stroke-width="2.5" />
+                  <path d="M160 224h80" stroke="var(--border-strong)" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M96 156l44-42 34 26 40-52 42 32" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="140" cy="114" r="5" fill="var(--accent)" />
+                  <circle cx="174" cy="140" r="5" fill="var(--accent)" />
+                  <circle cx="214" cy="88" r="5" fill="var(--accent)" />
+                  <circle cx="256" cy="120" r="5" fill="var(--accent)" />
+                  <rect x="96" y="52" width="86" height="9" rx="4.5" fill="var(--border-strong)" />
+                  <rect x="96" y="70" width="54" height="9" rx="4.5" fill="var(--border-strong)" />
+                  <circle cx="86" cy="248" r="17" fill="var(--accent)" />
+                  <path d="M60 292c0-14 11.6-22 26-22s26 8 26 22" fill="var(--accent)" opacity=".35" />
+                  <circle cx="314" cy="248" r="17" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2.5" />
+                  <path d="M288 292c0-14 11.6-22 26-22s26 8 26 22" fill="var(--border-strong)" opacity=".5" />
+                </svg>
+                </div>
               </article>
 
             </div>
           </div>
 
-          <!-- Un defilement automatique sans moyen de l'arreter prive le
-               visiteur du controle de sa lecture (WCAG 2.2.2). Le survol ne
-               suffit pas : il ne couvre ni le clavier ni le tactile. -->
+          <!-- Les chevrons vivent dans le bloc de commandes : sur grand ecran
+               ils sont detaches sur les cotes, sur petit ecran ils reprennent
+               leur place dans le flux, de part et d'autre des puces. -->
           <div class="carousel__controls">
-            <button type="button" class="carousel__toggle" id="services-toggle"
-              aria-label="Mettre en pause le défilement automatique">
-              <svg class="icon carousel__icon-pause" aria-hidden="true"><use href="#i-pause" /></svg>
-              <svg class="icon carousel__icon-play" aria-hidden="true"><use href="#i-play" /></svg>
+            <button type="button" class="carousel__arrow carousel__arrow--prev" id="services-prev"
+              aria-label="Service précédent" aria-controls="services-track">
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-left" /></svg>
             </button>
 
             <ul class="carousel__dots" id="services-dots">
@@ -389,6 +428,11 @@
               <li><button type="button" data-index="1" aria-label="Afficher : Intégration d'intelligence artificielle"></button></li>
               <li><button type="button" data-index="2" aria-label="Afficher : Formation"></button></li>
             </ul>
+
+            <button type="button" class="carousel__arrow carousel__arrow--next" id="services-next"
+              aria-label="Service suivant" aria-controls="services-track">
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-right" /></svg>
+            </button>
 
             <p class="sr-only" role="status" aria-live="polite" id="services-status"></p>
           </div>

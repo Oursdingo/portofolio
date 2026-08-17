@@ -77,6 +77,45 @@
   }
 }
 
+@media (max-width: 1024px) {
+  /* L'illustration passe sous le texte : cote a cote elle ecraserait
+     la colonne de texte a moins de 400 px. */
+  .service {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .service__art {
+    max-height: 240px;
+    margin-inline: auto;
+  }
+
+  /* Les chevrons quittent les cotes : la gouttiere qui leur etait reservee
+     n'a plus lieu d'etre et etranglerait le texte. */
+  .carousel--ready .service {
+    padding-inline: var(--space-8);
+  }
+
+  /* Detaches sur les cotes, les chevrons se poseraient sur le texte : ils
+     reprennent leur place dans le flux, de part et d'autre des puces. */
+  .carousel--ready .carousel__arrow {
+    position: static;
+    transform: none;
+    width: 42px;
+    height: 42px;
+    box-shadow: none;
+  }
+
+  .carousel--ready .carousel__arrow:hover {
+    transform: none;
+  }
+
+  .carousel--ready .carousel__controls {
+    gap: var(--space-4);
+    align-items: center;
+  }
+}
+
 @media (max-width: 860px) {
   /* Les panneaux passent en une colonne : le visuel au-dessus du texte.
      Le mode horizontal n'est jamais activé sous 861 px (animations.js). */
@@ -106,6 +145,12 @@
 
   .projects__viewport {
     padding-inline: var(--space-4);
+  }
+
+  /* Sur telephone, chaque pixel de largeur compte pour la longueur de ligne. */
+  .carousel--ready .service,
+  .service {
+    padding: var(--space-8) var(--space-6);
   }
 
   .panel__head {
