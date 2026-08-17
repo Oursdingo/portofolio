@@ -587,9 +587,34 @@
   transform: scale(1.04);
 }
 
+/* Visuels mobiles (e-Wari, LONIA) : l'image tient entiere dans le cadre.
+   En `cover`, un mockup de telephone dans un cadre paysage serait reduit a
+   une bande horizontale inexploitable. */
+.panel__visual--contain {
+  background: var(--surface-2);
+}
+
+/* Boite explicite plutot qu'un `height: 100%` dans une grille centree, qui
+   ne se resolvait pas et laissait l'image sortir a sa taille naturelle.
+   Les dimensions sont calculees et non deduites des ancrages : sur un
+   element remplace, `width: auto` retient la taille intrinseque et non
+   l'etirement, ce qui faisait cette fois s'effondrer l'image a 0. */
+.panel__visual--contain img {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  width: calc(100% - var(--space-6) * 2);
+  height: calc(100% - var(--space-6) * 2);
+  object-fit: contain;
+}
+
+.panel:hover .panel__visual--contain img {
+  transform: none;
+}
+
 /* Panneau sans capture : degrade + monogramme.
-   Deposer une image et renseigner src bascule le panneau en version
-   illustree, sans toucher au CSS ni au JS. */
+   Plus utilise aujourd'hui — les dix projets ont une capture — mais
+   conserve pour le prochain projet qui arriverait sans visuel. */
 .panel__visual--mono {
   display: grid;
   place-items: center;
