@@ -1,0 +1,69 @@
+/* ============================================================
+   tech-icons.css — couleurs de marque des logos de technologies
+
+   GENERE PAR scripts/fetch_tech_icons.py — NE PAS EDITER A LA MAIN.
+   Source : Simple Icons v13 (SVG en CC0).
+
+   Les logos quasi noirs sont eclaircis en mode sombre : a leur couleur
+   d'origine ils disparaitraient purement et simplement du fond.
+   ============================================================ */
+
+:root {
+  --t-angular: #0F0F11;
+  --t-springboot: #6DB33F;
+  --t-flutter: #02569B;
+  --t-dart: #0175C2;
+  --t-nextjs: #000000;
+  --t-typescript: #3178C6;
+  --t-javascript: #F7DF1E;
+  --t-python: #3776AB;
+  --t-java: #000000;
+  --t-fastapi: #009688;
+  --t-docker: #2496ED;
+  --t-postgresql: #4169E1;
+  --t-mysql: #4479A1;
+  --t-keycloak: #4D4D4D;
+  --t-odoo: #714B67;
+  --t-metabase: #509EE3;
+  --t-git: #F05032;
+  --t-github: #181717;
+  --t-gitlab: #FC6D26;
+  --t-swagger: #85EA2D;
+  --t-drupal: #0678BE;
+  --t-threejs: #000000;
+}
+
+[data-theme="dark"] {
+  --t-angular: #C3C3C4;
+  --t-flutter: #C0D5E6;
+  --t-nextjs: #BFBFBF;
+  --t-java: #BFBFBF;
+  --t-keycloak: #D2D2D2;
+  --t-odoo: #DCD2D9;
+  --t-github: #C5C5C5;
+  --t-threejs: #BFBFBF;
+}
+
+/* Les logos heritent de currentColor : une classe suffit a les colorer. */
+.tech--angular { color: var(--t-angular); }
+.tech--springboot { color: var(--t-springboot); }
+.tech--flutter { color: var(--t-flutter); }
+.tech--dart { color: var(--t-dart); }
+.tech--nextjs { color: var(--t-nextjs); }
+.tech--typescript { color: var(--t-typescript); }
+.tech--javascript { color: var(--t-javascript); }
+.tech--python { color: var(--t-python); }
+.tech--java { color: var(--t-java); }
+.tech--fastapi { color: var(--t-fastapi); }
+.tech--docker { color: var(--t-docker); }
+.tech--postgresql { color: var(--t-postgresql); }
+.tech--mysql { color: var(--t-mysql); }
+.tech--keycloak { color: var(--t-keycloak); }
+.tech--odoo { color: var(--t-odoo); }
+.tech--metabase { color: var(--t-metabase); }
+.tech--git { color: var(--t-git); }
+.tech--github { color: var(--t-github); }
+.tech--gitlab { color: var(--t-gitlab); }
+.tech--swagger { color: var(--t-swagger); }
+.tech--drupal { color: var(--t-drupal); }
+.tech--threejs { color: var(--t-threejs); }

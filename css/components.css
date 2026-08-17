@@ -278,132 +278,232 @@
   border: 1px solid transparent;
 }
 
-/* ---------- Filtres ---------- */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+/* ============================================================
+   Projets — piste de panneaux
+
+   Etat par defaut : piste VERTICALE. La bascule horizontale est ajoutee
+   par animations.js via la classe .projects--horizontal, et seulement
+   si GSAP est charge, l'ecran large et le mouvement non reduit.
+   Faire l'inverse laisserait 9 panneaux cote a cote en debordement
+   des qu'un CDN tombe.
+   ============================================================ */
+.projects {
+  background: var(--surface);
+  padding-block: var(--space-24);
+  overflow: hidden;
+}
+
+.projects__head {
   margin-bottom: var(--space-8);
 }
 
-.filter {
-  padding: 0.5em 1.2em;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
-}
-
-.filter:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.filter.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-contrast);
-}
-
-/* ---------- Carte projet ---------- */
-.project-card {
+.projects__track {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+  gap: var(--space-6);
 }
 
-.project-card[hidden] {
+/* En vertical, la piste reprend la largeur du conteneur. */
+.projects__viewport {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.projects__footer {
   display: none;
 }
 
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-lg);
+/* ---------- Panneau ---------- */
+.panel {
+  min-width: 0;
 }
 
-.project-card__thumb {
+.panel__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: var(--space-12);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 100%;
+}
+
+.panel__visual {
   position: relative;
-  aspect-ratio: 16 / 9;
+  align-self: stretch;
+  min-height: 260px;
   overflow: hidden;
   background: var(--surface-2);
 }
 
-.project-card__thumb img {
+.panel__visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease-out);
+  transition: transform 0.6s var(--ease-out);
 }
 
-.project-card:hover .project-card__thumb img {
-  transform: scale(1.06);
+.panel:hover .panel__visual img {
+  transform: scale(1.04);
 }
 
-/* Carte sans capture : dégradé + monogramme.
-   Déposer une image et renseigner src bascule la carte en version
-   illustrée, sans toucher au CSS ni au JS. */
-.project-card--noimage .project-card__thumb {
+/* Panneau sans capture : degrade + monogramme.
+   Deposer une image et renseigner src bascule le panneau en version
+   illustree, sans toucher au CSS ni au JS. */
+.panel__visual--mono {
   display: grid;
   place-items: center;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
 }
 
-.project-card__mono {
+.panel__mono {
   font-family: var(--font-mono);
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: #fff;
   opacity: 0.92;
 }
 
-.project-card__body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: var(--space-6);
+.panel__content {
+  padding: var(--space-8) var(--space-8) var(--space-8) 0;
+  min-width: 0;
 }
 
-.project-card__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-3);
+.panel__index {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
   margin-bottom: var(--space-3);
 }
 
-.project-card__title {
+.panel__index span {
+  color: var(--accent);
   font-size: var(--fs-lg);
+  font-weight: 500;
 }
 
-.project-card__text {
-  font-size: var(--fs-sm);
-  color: var(--text-muted);
-  flex-grow: 1;
+.panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
 
-.project-card__link {
+.panel__title {
+  font-size: var(--fs-2xl);
+}
+
+.panel__text {
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+  max-width: 52ch;
+}
+
+.panel__link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin-top: auto;
+  margin-top: var(--space-6);
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--accent);
 }
 
-.project-card__link:hover {
+.panel__link:hover {
   text-decoration: underline;
+}
+
+/* ---------- Mode horizontal ---------- */
+.projects--horizontal {
+  padding-block: 0;
+}
+
+.projects--horizontal .projects__stage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-6);
+  padding-block: calc(var(--header-h) + var(--space-6)) var(--space-8);
+}
+
+.projects--horizontal .projects__head {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.projects--horizontal .projects__head .section-title {
+  margin-bottom: 0;
+}
+
+.projects--horizontal .projects__viewport {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: none;
+  padding-inline: 0;
+  overflow: hidden;
+}
+
+.projects--horizontal .projects__track {
+  flex-direction: row;
+  gap: 0;
+  height: 100%;
+  will-change: transform;
+}
+
+.projects--horizontal .panel {
+  flex: 0 0 100%;
+  height: 100%;
+  padding-inline: var(--space-6);
+}
+
+.projects--horizontal .panel__inner {
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.projects--horizontal .projects__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-shrink: 0;
+}
+
+.projects__counter {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.projects__counter span {
+  color: var(--accent);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+}
+
+.projects__bar {
+  flex: 1 1 auto;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+  overflow: hidden;
+}
+
+.projects__bar-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
 }
 
 /* ---------- Badges de statut ---------- */
@@ -470,17 +570,29 @@
 
 .marquee__track {
   display: flex;
-  gap: var(--space-8);
+  gap: var(--space-12);
   width: max-content;
   will-change: transform;
 }
 
 .marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
   font-family: var(--font-mono);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-base);
   color: var(--text-muted);
-  opacity: 0.55;
   white-space: nowrap;
+}
+
+/* Le logo porte la couleur de marque via .tech--<nom> (tech-icons.css) ;
+   le libelle reste dans le gris du texte secondaire pour ne pas
+   transformer la bande en arc-en-ciel illisible. */
+.marquee__logo {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 /* ---------- Formulaire ---------- */

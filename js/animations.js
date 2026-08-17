@@ -41,6 +41,71 @@ function typewriter(el) {
   setTimeout(tick, 2200);
 }
 
+/**
+ * Défilement horizontal épinglé de la section Projets.
+ *
+ * La piste est verticale par défaut dans le CSS ; c'est ici, et seulement
+ * ici, qu'on ajoute `.projects--horizontal`. Conséquence voulue : si GSAP
+ * ne charge pas, si l'écran est étroit ou si le mouvement est réduit, on
+ * garde l'empilement vertical sans qu'aucune règle ne parte en débordement.
+ *
+ * `gsap.matchMedia` défait tout ça automatiquement quand la condition
+ * cesse d'être vraie — rotation d'un mobile, redimensionnement d'une
+ * fenêtre — y compris le retrait de la classe.
+ */
+function initHorizontalProjects(gsap, ScrollTrigger) {
+  const section = document.querySelector("#projets");
+  const track = document.querySelector("#projects-track");
+  const viewport = document.querySelector(".projects__viewport");
+  if (!section || !track || !viewport) return;
+
+  const panels = gsap.utils.toArray(".panel", track);
+  if (panels.length < 2) return;
+
+  const counter = document.querySelector("#projects-current");
+  const bar = document.querySelector("#projects-bar");
+  const dernier = panels.length - 1;
+
+  // Distance de défilement par panneau, en fraction de la largeur du viewport.
+  // À 1, traverser les 9 projets demande près de 10 hauteurs d'écran — la
+  // section pèse alors plus que tout le reste de la page réuni. À 0.55 on
+  // reste sous 6, ce qui se parcourt sans lassitude. Le calage n'est pas
+  // affecté : il travaille en proportion, pas en pixels.
+  const RYTHME = 0.55;
+
+  gsap.matchMedia().add("(min-width: 861px)", () => {
+    section.classList.add("projects--horizontal");
+
+    const tween = gsap.to(track, {
+      xPercent: -100 * dernier,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        pin: true,
+        start: "top top",
+        // Recalculé à chaque refresh : la largeur dépend du viewport.
+        end: () => "+=" + viewport.offsetWidth * dernier * RYTHME,
+        scrub: 1,
+        snap: { snapTo: 1 / dernier, duration: 0.25, ease: "power1.inOut" },
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const index = Math.round(self.progress * dernier);
+          if (counter) counter.textContent = String(index + 1).padStart(2, "0");
+          if (bar) bar.style.transform = `scaleX(${self.progress})`;
+        },
+      },
+    });
+
+    return () => {
+      section.classList.remove("projects--horizontal");
+      tween.scrollTrigger?.kill();
+      tween.kill();
+      gsap.set(track, { clearProps: "transform" });
+      if (bar) bar.style.transform = "";
+    };
+  });
+}
+
 function initLenis(gsap, ScrollTrigger) {
   const lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
 
@@ -159,15 +224,17 @@ export function initAnimations() {
     );
   }
 
-  // --- Cartes projet en cascade ---
-  gsap.from(".project-card", {
-    y: 36,
+  // --- Révélation de l'en-tête des projets ---
+  gsap.from(".projects__head > *", {
+    y: 32,
     opacity: 0,
-    duration: 0.6,
-    stagger: 0.06,
+    duration: 0.7,
+    stagger: 0.08,
     ease: "power3.out",
-    scrollTrigger: { trigger: "#project-grid", start: "top 85%", once: true },
+    scrollTrigger: { trigger: "#projets", start: "top 80%", once: true },
   });
+
+  initHorizontalProjects(gsap, ScrollTrigger);
 
   // --- Marquee ---
   const track = document.querySelector("#marquee-track");
@@ -198,4 +265,9 @@ export function initAnimations() {
       onEnterBack: setActive,
     });
   });
+
+  // Les polices web changent la hauteur du texte une fois chargées, ce qui
+  // décale toutes les positions de déclenchement. Sans ce recalcul, la
+  // section épinglée démarre au mauvais endroit sur un premier chargement.
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
