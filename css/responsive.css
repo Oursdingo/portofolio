@@ -4,7 +4,8 @@
 
 @media (max-width: 1024px) {
   .hero__inner,
-  .about {
+  .about,
+  .contact {
     grid-template-columns: 1fr;
     gap: var(--space-12);
   }
@@ -62,6 +63,10 @@
   .section {
     padding-block: var(--space-16);
   }
+
+  .section-lead {
+    margin-bottom: var(--space-12);
+  }
 }
 
 @media (max-width: 640px) {
@@ -77,8 +82,39 @@
     width: 100%;
   }
 
-  .card-grid {
+  .field-row {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .project-grid,
+  .card-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .timeline {
+    padding-left: var(--space-8);
+  }
+
+  .timeline__dot {
+    left: calc(var(--space-8) * -1);
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .to-top {
+    right: var(--space-4);
+    bottom: var(--space-4);
   }
 }
 
@@ -89,5 +125,17 @@
 
   .stats__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Mouvement réduit ----------
+   Complète le bloc de base.css pour ce que GSAP ne pilote pas. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    transform: none !important;
+  }
+
+  .hero__caret {
+    animation: none;
   }
 }
