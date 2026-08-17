@@ -922,11 +922,11 @@ Insérer entre le lien d'évitement et `<main>` :
   <div class="header__inner container">
     <a href="#accueil" class="logo" aria-label="Adam's Coding — retour en haut">
       <svg class="logo__mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
-        <g fill="none" stroke="var(--logo-red)" stroke-width="2.6"
+        <g fill="none" stroke="var(--logo-red)" stroke-width="2.8"
            stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11.5 10 L6.5 16 L11.5 22" />
-          <path d="M19 9 L13 23" />
-          <path d="M20.5 10 L25.5 16 L20.5 22" />
+          <path d="M10 10 L5 16 L10 22" />
+          <path d="M19 8.5 L13 23.5" />
+          <path d="M22 10 L27 16 L22 22" />
         </g>
       </svg>
       <span class="logo__text">Adam's<strong>Coding</strong></span>
@@ -2805,11 +2805,11 @@ Après `</main>` :
 <body>
   <main class="thanks">
     <svg class="thanks__mark" viewBox="0 0 32 32" width="64" height="64" aria-hidden="true">
-      <g fill="none" stroke="var(--logo-red)" stroke-width="2.6"
+      <g fill="none" stroke="var(--logo-red)" stroke-width="2.8"
          stroke-linecap="round" stroke-linejoin="round">
-        <path d="M11.5 10 L6.5 16 L11.5 22" />
-        <path d="M19 9 L13 23" />
-        <path d="M20.5 10 L25.5 16 L20.5 22" />
+        <path d="M10 10 L5 16 L10 22" />
+        <path d="M19 8.5 L13 23.5" />
+        <path d="M22 10 L27 16 L22 22" />
       </g>
     </svg>
     <h1 class="thanks__title">Message bien reçu</h1>
