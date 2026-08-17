@@ -10,7 +10,8 @@ BG = (255, 255, 255)
 RED = (220, 38, 38)
 INK = (13, 17, 23)
 MUTED = (91, 100, 114)
-ACCENT = (67, 56, 202)
+# L'accent du site est le meme rouge que le logo.
+ACCENT = RED
 
 # Polices candidates, de la plus proche du site (grotesque geometrique) a la
 # plus generique. La premiere qui se charge gagne. Aucune n'est garantie

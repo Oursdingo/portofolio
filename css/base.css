@@ -21,9 +21,10 @@
   --surface-2: #eff1f5;
   --text: #0d1117;
   --text-muted: #5b6472;
-  --accent: #4338ca;
-  --accent-hover: #3730a3;
-  --accent-soft: rgba(67, 56, 202, 0.08);
+  /* L'accent et le logo partagent le même rouge : identité unifiée. */
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+  --accent-soft: rgba(220, 38, 38, 0.08);
   --accent-contrast: #ffffff;
   --border: rgba(13, 17, 23, 0.08);
   --border-strong: rgba(13, 17, 23, 0.16);
@@ -68,17 +69,17 @@
 }
 
 /* ---------- Jetons : thème sombre ----------
-   L'accent change de teinte : un indigo fonce sur fond noir serait
-   illisible. Le rouge du logo s'eclaircit pour la meme raison. */
+   L'accent s'eclaircit : le rouge profond du mode clair passerait mal
+   sur fond noir. */
 [data-theme="dark"] {
   --bg: #0b0d12;
   --surface: #12151c;
   --surface-2: #1a1f29;
   --text: #e8eaf0;
   --text-muted: #9aa3b2;
-  --accent: #818cf8;
-  --accent-hover: #a5b0ff;
-  --accent-soft: rgba(129, 140, 248, 0.14);
+  --accent: #f05252;
+  --accent-hover: #ff7b7b;
+  --accent-soft: rgba(240, 82, 82, 0.14);
   --accent-contrast: #0b0d12;
   --border: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.18);

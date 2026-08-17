@@ -22,17 +22,24 @@ def ratio(fg, bg):
 
 
 # (nom, premier plan, arriere-plan, ratio minimum)
+#
+# L'accent et le logo partagent desormais le meme rouge. Le rouge sur blanc
+# a moins de marge que l'indigo precedent (4.83 contre 7.90) : chaque paire
+# qui l'implique est donc testee, y compris le texte des boutons.
 PAIRS = [
-    ("clair  texte / fond",         "#0D1117", "#FFFFFF", 4.5),
-    ("clair  texte attenue / fond", "#5B6472", "#FFFFFF", 4.5),
-    ("clair  accent / fond",        "#4338CA", "#FFFFFF", 4.5),
-    ("clair  logo rouge / fond",    "#DC2626", "#FFFFFF", 3.0),
-    ("clair  texte / surface",      "#0D1117", "#F7F8FA", 4.5),
-    ("sombre texte / fond",         "#E8EAF0", "#0B0D12", 4.5),
-    ("sombre texte attenue / fond", "#9AA3B2", "#0B0D12", 4.5),
-    ("sombre accent / fond",        "#818CF8", "#0B0D12", 4.5),
-    ("sombre logo rouge / fond",    "#F05252", "#0B0D12", 3.0),
-    ("sombre texte / surface",      "#E8EAF0", "#12151C", 4.5),
+    ("clair  texte / fond",          "#0D1117", "#FFFFFF", 4.5),
+    ("clair  texte attenue / fond",  "#5B6472", "#FFFFFF", 4.5),
+    ("clair  accent / fond",         "#DC2626", "#FFFFFF", 4.5),
+    ("clair  accent / surface",      "#DC2626", "#F7F8FA", 4.5),
+    ("clair  blanc sur accent",      "#FFFFFF", "#DC2626", 4.5),
+    ("clair  blanc sur accent survol", "#FFFFFF", "#B91C1C", 4.5),
+    ("clair  texte / surface",       "#0D1117", "#F7F8FA", 4.5),
+    ("sombre texte / fond",          "#E8EAF0", "#0B0D12", 4.5),
+    ("sombre texte attenue / fond",  "#9AA3B2", "#0B0D12", 4.5),
+    ("sombre accent / fond",         "#F05252", "#0B0D12", 4.5),
+    ("sombre accent / surface",      "#F05252", "#12151C", 4.5),
+    ("sombre fond sur accent",       "#0B0D12", "#F05252", 4.5),
+    ("sombre texte / surface",       "#E8EAF0", "#12151C", 4.5),
 ]
 
 failed = 0

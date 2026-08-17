@@ -24,8 +24,8 @@ Toute étape « vérifier » indique le résultat attendu exact. Une étape sans
 Valeurs reprises telles quelles de la spec. Elles s'appliquent à **toutes** les tâches.
 
 - **Thème par défaut :** le choix mémorisé prime ; à défaut la **préférence système** (`prefers-color-scheme`) ; clair si le système n'en exprime aucune (spec §12).
-- **Palette claire :** `--bg #FFFFFF` · `--surface #F7F8FA` · `--text #0D1117` · `--text-muted #5B6472` · `--accent #4338CA` · `--border rgba(13,17,23,.08)` · `--logo-red #DC2626`
-- **Palette sombre :** `--bg #0B0D12` · `--surface #12151C` · `--text #E8EAF0` · `--text-muted #9AA3B2` · `--accent #818CF8` · `--border rgba(255,255,255,.09)` · `--logo-red #F05252`
+- **Palette claire :** `--bg #FFFFFF` · `--surface #F7F8FA` · `--text #0D1117` · `--text-muted #5B6472` · `--accent #DC2626` · `--border rgba(13,17,23,.08)` · `--logo-red #DC2626`
+- **Palette sombre :** `--bg #0B0D12` · `--surface #12151C` · `--text #E8EAF0` · `--text-muted #9AA3B2` · `--accent #F05252` · `--border rgba(255,255,255,.09)` · `--logo-red #F05252`
 - **Polices :** Sora (titres, 600–700) · Inter (corps, 400–600) · JetBrains Mono (labels, 500)
 - **Budget :** premier chargement < 800 Ko · LCP < 1,5 s · Lighthouse Performance ≥ 95 · Accessibilité ≥ 95
 - **Images :** 1200 px de large maximum, WebP qualité 82. Repli PNG pour les portraits détourés, JPEG qualité 82 pour les captures opaques. **Les originaux ne sont jamais écrasés.**
@@ -104,12 +104,12 @@ def ratio(fg, bg):
 PAIRS = [
     ("clair  texte / fond",        "#0D1117", "#FFFFFF", 4.5),
     ("clair  texte attenue / fond", "#5B6472", "#FFFFFF", 4.5),
-    ("clair  accent / fond",       "#4338CA", "#FFFFFF", 4.5),
+    ("clair  accent / fond",       "#DC2626", "#FFFFFF", 4.5),
     ("clair  logo rouge / fond",   "#DC2626", "#FFFFFF", 3.0),
     ("clair  texte / surface",     "#0D1117", "#F7F8FA", 4.5),
     ("sombre texte / fond",        "#E8EAF0", "#0B0D12", 4.5),
     ("sombre texte attenue / fond", "#9AA3B2", "#0B0D12", 4.5),
-    ("sombre accent / fond",       "#818CF8", "#0B0D12", 4.5),
+    ("sombre accent / fond",       "#F05252", "#0B0D12", 4.5),
     ("sombre logo rouge / fond",   "#F05252", "#0B0D12", 3.0),
     ("sombre texte / surface",     "#E8EAF0", "#12151C", 4.5),
 ]
@@ -510,9 +510,9 @@ git commit -m "feat: ajoute le logo </> et l'image de partage Open Graph"
   --surface-2: #eff1f5;
   --text: #0d1117;
   --text-muted: #5b6472;
-  --accent: #4338ca;
-  --accent-hover: #3730a3;
-  --accent-soft: rgba(67, 56, 202, 0.08);
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+  --accent-soft: rgba(220, 38, 38, 0.08);
   --accent-contrast: #ffffff;
   --border: rgba(13, 17, 23, 0.08);
   --border-strong: rgba(13, 17, 23, 0.16);
@@ -563,9 +563,9 @@ git commit -m "feat: ajoute le logo </> et l'image de partage Open Graph"
   --surface-2: #1a1f29;
   --text: #e8eaf0;
   --text-muted: #9aa3b2;
-  --accent: #818cf8;
-  --accent-hover: #a5b0ff;
-  --accent-soft: rgba(129, 140, 248, 0.14);
+  --accent: #f05252;
+  --accent-hover: #ff7b7b;
+  --accent-soft: rgba(240, 82, 82, 0.14);
   --accent-contrast: #0b0d12;
   --border: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.18);
@@ -2456,7 +2456,7 @@ Attendu : `null`.
 3. Cliquer sur « Académiques » — attendu : 2 cartes (DAO, Plateforme hôtelière).
 4. Cliquer sur « Tous » — attendu : 9 cartes.
 5. Naviguer aux filtres au clavier et activer avec Entrée — attendu : le filtre s'applique, `aria-pressed` bascule.
-6. Les six cartes sans capture affichent leur monogramme sur dégradé indigo, aucune n'a de bouton de lien.
+6. Les six cartes sans capture affichent leur monogramme sur dégradé rouge, aucune n'a de bouton de lien.
 7. Seul Luxonera affiche « Voir le site ».
 
 - [ ] **Étape 11 : commit**

@@ -34,8 +34,8 @@ compétences, ni ses projets réels.
 |---|---|
 | Stack | HTML/CSS/JS vanilla, aucun build, déploiement Vercel inchangé |
 | Direction visuelle | Éditorial épuré |
-| Accent | Indigo profond |
-| Logo | `</>` **rouge** — signature personnelle assumée face à l'indigo |
+| Accent | Rouge, unifié avec le logo |
+| Logo | `</>` **rouge**, même teinte que l'accent — identité unifiée |
 | Thème par défaut | Préférence système du visiteur, clair en repli |
 | Captures des nouveaux projets | Aucune ; cartes sans image, prêtes à en accueillir |
 
@@ -164,16 +164,23 @@ jetons qui changent.
 | `--surface` | `#F7F8FA` | `#12151C` |
 | `--text` | `#0D1117` | `#E8EAF0` |
 | `--text-muted` | `#5B6472` | `#9AA3B2` |
-| `--accent` | `#4338CA` | `#818CF8` |
-| `--accent-soft` | `rgba(67,56,202,.08)` | `rgba(129,140,248,.14)` |
+| `--accent` | `#DC2626` | `#F05252` |
+| `--accent-soft` | `rgba(220,38,38,.08)` | `rgba(240,82,82,.14)` |
 | `--border` | `rgba(13,17,23,.08)` | `rgba(255,255,255,.09)` |
 | `--logo-red` | `#DC2626` | `#F05252` |
 
-L'accent change de teinte entre les deux modes : un indigo foncé sur fond noir
-serait illisible. Le rouge du logo s'éclaircit également en mode sombre.
+L'accent s'éclaircit en mode sombre : le rouge profond du mode clair passerait
+mal sur fond noir. Le logo suit la même teinte que l'accent.
 
 Tous les couples texte/fond doivent atteindre WCAG AA (4.5:1 pour le texte
 courant, 3:1 pour le texte large).
+
+**Marge de contraste.** Le rouge est plus exigeant que l'indigo initialement
+retenu : `#DC2626` sur blanc donne 4.83:1 contre 7.90:1, et 4.54:1 sur la
+surface grise — au-dessus du seuil, mais c'est la marge la plus faible du site.
+`scripts/check_contrast.py` teste donc chaque paire impliquant l'accent, y
+compris le texte blanc des boutons. Toute retouche de ce rouge doit être
+revalidée par ce script.
 
 ### 5.3 Logo et favicon
 
@@ -239,7 +246,7 @@ Navigation (6 entrées) : Accueil · À propos · Expérience · Projets · Comp
 
 Composant `.project-card--noimage` :
 
-- fond en dégradé indigo
+- fond en dégradé rouge
 - monogramme du projet en grand, en JetBrains Mono
 - badges de stack
 - titre, description, badge de statut
