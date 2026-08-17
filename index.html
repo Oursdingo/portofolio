@@ -305,6 +305,284 @@
         </div>
       </div>
     </section>
+
+    <!-- ============================================================
+         Expérience professionnelle
+         ============================================================ -->
+    <section class="section" id="experience">
+      <div class="container">
+        <p class="eyebrow">Parcours</p>
+        <h2 class="section-title">Expérience <span>professionnelle</span></h2>
+        <p class="section-lead">
+          Deux postes menés en parallèle : le développement de plateformes
+          institutionnelles et le pilotage de projets en agence.
+        </p>
+
+        <ol class="timeline">
+          <span class="timeline__line" aria-hidden="true"></span>
+
+          <li class="timeline__item">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__body">
+              <p class="timeline__period">Juin 2025 — Présent</p>
+              <h3 class="timeline__role">Développeur Full Stack</h3>
+              <p class="timeline__company">Switch Maker</p>
+              <ul class="timeline__list">
+                <li>Développement de plateformes web pour des institutions.</li>
+                <li><strong>SIG</strong> — Système Intégré de Gestion, avec Odoo et Metabase pour les tableaux de bord. En cours de développement.</li>
+                <li><strong>DAICE</strong> — plateforme de promotion des investissements pour le CEPICI (Côte d'Ivoire).</li>
+                <li>Conception du socle applicatif : architecture logicielle, modules métier, sécurité avec Keycloak.</li>
+                <li>Intégration de modèles d'intelligence artificielle via API, développés avec FastAPI et Python.</li>
+                <li><strong>LONIA</strong> — application mobile d'apprentissage en ligne, réalisée avec Flutter.</li>
+                <li><strong>KEL</strong> — application mobile de gestion de livraison, suivi des commandes et des courses, réalisée avec Flutter.</li>
+                <li>Analyse des besoins, modélisation UML, rédaction de comptes rendus, méthodologie Agile.</li>
+              </ul>
+              <ul class="tag-list">
+                <li class="tag">Angular</li><li class="tag">Spring Boot</li>
+                <li class="tag">Flutter</li><li class="tag">FastAPI</li>
+                <li class="tag">Keycloak</li><li class="tag">Odoo</li>
+                <li class="tag">Metabase</li><li class="tag">PostgreSQL</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline__item">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__body">
+              <p class="timeline__period">En parallèle</p>
+              <h3 class="timeline__role">Responsable des projets informatiques</h3>
+              <p class="timeline__company">BlendBloc — agence web marketing</p>
+              <ul class="timeline__list">
+                <li>Pilotage des projets techniques.</li>
+                <li>Mise en place d'un espace de gestion de projet avec Notion : suivi des tâches, réunions et documents.</li>
+                <li>Développement du site vitrine de l'agence.</li>
+              </ul>
+              <ul class="tag-list">
+                <li class="tag">Gestion de projet</li><li class="tag">Notion</li>
+                <li class="tag">Next.js</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Projets — ordre imposé, non négociable (spec §4.4)
+         ============================================================ -->
+    <section class="section section--surface" id="projets">
+      <div class="container">
+        <p class="eyebrow">Réalisations</p>
+        <h2 class="section-title">Mes <span>projets</span></h2>
+        <p class="section-lead">
+          Des plateformes institutionnelles aux applications mobiles, en
+          passant par le e-commerce et les projets académiques.
+        </p>
+
+        <div class="filters" role="group" aria-label="Filtrer les projets">
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Tous</button>
+          <button type="button" class="filter" data-filter="pro" aria-pressed="false">Professionnels</button>
+          <button type="button" class="filter" data-filter="web" aria-pressed="false">Web</button>
+          <button type="button" class="filter" data-filter="mobile" aria-pressed="false">Mobile</button>
+          <button type="button" class="filter" data-filter="academique" aria-pressed="false">Académiques</button>
+        </div>
+
+        <p class="sr-only" id="filters-status" role="status" aria-live="polite"></p>
+
+        <div class="project-grid" id="project-grid">
+          <!-- 1 -->
+          <article class="project-card project-card--noimage" data-category="pro web">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">SIG</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">SIG — Système Intégré de Gestion</h3>
+                <span class="badge badge--wip">En cours</span>
+              </div>
+              <p class="project-card__text">
+                Plateforme institutionnelle de gestion développée chez Switch
+                Maker, avec Odoo pour le socle métier et Metabase pour les
+                tableaux de bord.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Odoo</li><li class="tag">Metabase</li><li class="tag">PostgreSQL</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="project-card project-card--noimage" data-category="pro web">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">DAICE</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">DAICE — CEPICI</h3>
+                <span class="badge badge--pro">Projet professionnel</span>
+              </div>
+              <p class="project-card__text">
+                Plateforme de promotion des investissements pour le CEPICI, en
+                Côte d'Ivoire. Gestion de dossiers et de procédures
+                administratives.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Angular</li><li class="tag">Spring Boot</li><li class="tag">Keycloak</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="project-card" data-category="web">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="images/optimized/luxonera.webp" type="image/webp" />
+                <img src="images/optimized/luxonera.jpg" alt="Interface de la plateforme Luxonera"
+                  width="1200" height="563" loading="lazy" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">Luxonera</h3>
+                <span class="badge badge--live">En ligne</span>
+              </div>
+              <p class="project-card__text">
+                Plateforme e-commerce de montres de luxe pour le marché
+                burkinabè, avec prise de commande via WhatsApp.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Next.js</li><li class="tag">Three.js</li>
+              </ul>
+              <a class="project-card__link" href="https://luxonera-app.vercel.app/" target="_blank"
+                rel="noopener noreferrer">
+                Voir le site
+                <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="project-card project-card--noimage" data-category="mobile">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">E-W</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">E-Wari</h3>
+                <span class="badge">Projet personnel</span>
+              </div>
+              <p class="project-card__text">
+                Application de gestion des finances personnelles pensée pour les
+                jeunes d'Afrique de l'Ouest. Conception complète menée à terme :
+                diagrammes UML détaillés, cahier des charges, architecture
+                technique, documentation centralisée.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Flutter</li><li class="tag">Spring Boot</li><li class="tag">PostgreSQL</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="project-card project-card--noimage" data-category="pro mobile">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">KEL</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">KEL</h3>
+                <span class="badge badge--pro">Projet professionnel</span>
+              </div>
+              <p class="project-card__text">
+                Application mobile de gestion de livraison permettant le suivi
+                des commandes et des courses. Réalisée avec Flutter chez Switch
+                Maker.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Flutter</li><li class="tag">Dart</li><li class="tag">API REST</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="project-card project-card--noimage" data-category="pro mobile">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">LON</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">LONIA</h3>
+                <span class="badge badge--pro">Projet professionnel</span>
+              </div>
+              <p class="project-card__text">
+                Application mobile d'apprentissage en ligne, réalisée avec
+                Flutter chez Switch Maker.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Flutter</li><li class="tag">Dart</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 7 -->
+          <article class="project-card project-card--noimage" data-category="academique web">
+            <div class="project-card__thumb" aria-hidden="true"><span class="project-card__mono">DAO</span></div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">Plateforme de gestion des DAO</h3>
+                <span class="badge badge--academic">Projet de fin d'études</span>
+              </div>
+              <p class="project-card__text">
+                Application d'analyse des dossiers d'appel d'offres avec suivi de
+                la progression en temps réel, permissions par rôle
+                (administrateur, rédacteur, relecteur, observateur) et
+                architecture complète, du frontend jusqu'au microservice
+                d'intelligence artificielle.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Angular</li><li class="tag">Spring Boot</li><li class="tag">FastAPI</li>
+                <li class="tag">Keycloak</li><li class="tag">PostgreSQL</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 8 -->
+          <article class="project-card" data-category="web">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="images/optimized/etrack.webp" type="image/webp" />
+                <img src="images/optimized/etrack.jpg" alt="Tableau de bord de l'application eTrack"
+                  width="1200" height="675" loading="lazy" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">eTrack</h3>
+                <span class="badge">Projet personnel</span>
+              </div>
+              <p class="project-card__text">
+                Application de suivi des dépenses et de gestion financière
+                personnelle, avec tableaux de bord pour visualiser les habitudes
+                de consommation.
+              </p>
+              <ul class="tag-list"><li class="tag">Next.js</li></ul>
+            </div>
+          </article>
+
+          <!-- 9 -->
+          <article class="project-card" data-category="academique web">
+            <div class="project-card__thumb">
+              <picture>
+                <source srcset="images/optimized/hotellerie.webp" type="image/webp" />
+                <img src="images/optimized/hotellerie.jpg" alt="Interface de la plateforme hôtelière"
+                  width="1200" height="606" loading="lazy" />
+              </picture>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <h3 class="project-card__title">Plateforme hôtelière</h3>
+                <span class="badge badge--academic">Projet académique</span>
+              </div>
+              <p class="project-card__text">
+                Application de gestion des réservations et des services d'un
+                établissement hôtelier.
+              </p>
+              <ul class="tag-list"><li class="tag">Java</li><li class="tag">MySQL</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Le pied de page arrive en Tâche 11 -->
