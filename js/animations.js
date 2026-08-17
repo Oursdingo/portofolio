@@ -66,12 +66,16 @@ function initHorizontalProjects(gsap, ScrollTrigger) {
   const bar = document.querySelector("#projects-bar");
   const dernier = panels.length - 1;
 
-  // Distance de défilement par panneau, en fraction de la largeur du viewport.
-  // À 1, traverser les 9 projets demande près de 10 hauteurs d'écran — la
-  // section pèse alors plus que tout le reste de la page réuni. À 0.55 on
-  // reste sous 6, ce qui se parcourt sans lassitude. Le calage n'est pas
-  // affecté : il travaille en proportion, pas en pixels.
-  const RYTHME = 0.55;
+  // Distance de défilement par panneau, en fraction de la HAUTEUR de fenêtre.
+  //
+  // La caler sur la largeur — ce que je faisais d'abord — rend la traversée
+  // d'autant plus longue que l'écran est large, alors que l'effort ressenti
+  // se compte en hauteurs d'écran. Sur un 1585 px de large, les 10 projets
+  // demandaient 8,7 hauteurs ; rapportés à la hauteur ils en demandent 5,4,
+  // quelle que soit la largeur.
+  //
+  // Le calage n'est pas affecté : il travaille en proportion, pas en pixels.
+  const RYTHME = 0.6;
 
   gsap.matchMedia().add("(min-width: 861px)", () => {
     section.classList.add("projects--horizontal");
@@ -83,8 +87,8 @@ function initHorizontalProjects(gsap, ScrollTrigger) {
         trigger: section,
         pin: true,
         start: "top top",
-        // Recalculé à chaque refresh : la largeur dépend du viewport.
-        end: () => "+=" + viewport.offsetWidth * dernier * RYTHME,
+        // Recalculé à chaque refresh, donc suit un redimensionnement.
+        end: () => "+=" + window.innerHeight * RYTHME * dernier,
         scrub: 1,
         snap: { snapTo: 1 / dernier, duration: 0.25, ease: "power1.inOut" },
         invalidateOnRefresh: true,
