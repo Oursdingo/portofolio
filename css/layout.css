@@ -184,6 +184,14 @@ main {
   margin-bottom: var(--space-8);
 }
 
+/* Le portrait source fait 800 px : sans plafond, un ecran large
+   l'afficherait au-dela de sa resolution reelle et il perdrait en nettete. */
+.hero__visual {
+  max-width: 560px;
+  margin-inline: auto;
+  width: 100%;
+}
+
 .hero__visual img {
   width: 100%;
   height: auto;

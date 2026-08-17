@@ -242,6 +242,9 @@
   padding-left: var(--space-6);
   font-size: var(--fs-sm);
   color: var(--text-muted);
+  /* Sur un conteneur elargi, ces puces atteindraient plus de 130 caracteres
+     par ligne : l'oeil perd le debut de la ligne suivante. */
+  max-width: 88ch;
 }
 
 .timeline__list li::before {

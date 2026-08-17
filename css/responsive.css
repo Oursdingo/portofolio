@@ -2,6 +2,14 @@
    responsive.css — points de rupture
    ============================================================ */
 
+/* Le conteneur elargi ferait passer les competences a 4 colonnes, laissant
+   deux emplacements vides pour 6 blocs. On garde 3 + 3. */
+@media (min-width: 1200px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 1024px) {
   .hero__inner,
   .about,

@@ -63,7 +63,13 @@
   --radius-lg: 1.25rem;
   --radius-full: 999px;
 
-  --container: 1200px;
+  /* Conteneur fluide entre deux bornes, sans point de rupture :
+       - plancher 1200 px : en dessous, 92vw gaspillerait de la place sur
+         mobile, ou chaque pixel compte ;
+       - 92vw au milieu : un ecran de 1600 px laissait 400 px vides ;
+       - plafond 1760 px : au-dela, les lignes deviennent trop longues
+         pour que l'oeil retrouve le debut de la suivante. */
+  --container: min(1760px, max(1200px, 92vw));
   --header-h: 72px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
