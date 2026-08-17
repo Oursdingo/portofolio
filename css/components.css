@@ -125,6 +125,179 @@
   transform: translateY(-3px);
 }
 
+/* ============================================================
+   Carrousel des services
+
+   Etat par defaut : blocs empiles, tous lisibles. carousel.js ajoute
+   .carousel--ready pour passer en horizontal. Faire l'inverse ne
+   montrerait qu'un seul bloc si le JS echoue.
+   ============================================================ */
+.carousel__track {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-16) var(--space-12);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.service__icon {
+  width: 52px;
+  height: 52px;
+  fill: var(--accent);
+  margin-bottom: var(--space-6);
+}
+
+.service__title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-6);
+  max-width: 20ch;
+}
+
+.service__text {
+  font-size: var(--fs-lg);
+  color: var(--text-muted);
+  max-width: 68ch;
+}
+
+.service__text + .service__text {
+  margin-top: var(--space-4);
+}
+
+.service__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--accent);
+  align-self: flex-start;
+}
+
+.service__link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Mode carrousel ---------- */
+.carousel--ready .carousel__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.carousel--ready .carousel__track {
+  display: flex;
+  gap: 0;
+  transition: transform 0.7s var(--ease-out);
+  will-change: transform;
+}
+
+.carousel--ready .service {
+  flex: 0 0 100%;
+  min-height: 60vh;
+  border-radius: 0;
+  border-inline: none;
+}
+
+.carousel__controls {
+  display: none;
+}
+
+.carousel--ready .carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.carousel__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.carousel__toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.carousel__icon-play,
+.carousel__toggle.is-paused .carousel__icon-pause {
+  display: none;
+}
+
+.carousel__toggle.is-paused .carousel__icon-play {
+  display: block;
+}
+
+.carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.carousel__dots button {
+  display: block;
+  width: 36px;
+  height: 4px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out), width 0.3s var(--ease-out);
+}
+
+.carousel__dots button:hover {
+  background: var(--accent-hover);
+}
+
+.carousel__dots button.is-active {
+  width: 56px;
+  background: var(--accent);
+}
+
+/* Mouvement reduit : pas de glissement, pas de defilement automatique
+   (coupe aussi dans carousel.js), et les blocs se reempilent. */
+@media (prefers-reduced-motion: reduce) {
+  .carousel--ready .carousel__track {
+    display: grid;
+    gap: var(--space-6);
+    transform: none !important;
+    transition: none;
+  }
+
+  .carousel--ready .carousel__viewport {
+    overflow: visible;
+  }
+
+  .carousel--ready .service {
+    min-height: 0;
+    border-radius: var(--radius-lg);
+    border-inline: 1px solid var(--border);
+  }
+
+  .carousel--ready .carousel__controls {
+    display: none;
+  }
+}
+
 /* ---------- Carte ---------- */
 .card {
   display: flex;

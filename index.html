@@ -93,6 +93,8 @@
       <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M12 3 1 8l11 5 9-4.09V16h2V8L12 3ZM5 13.18v3.82L12 21l7-4v-3.82l-7 3.18-7-3.18Z"/></symbol>
       <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M9 3h6a1 1 0 0 1 1 1v2h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4V4a1 1 0 0 1 1-1Zm1 3h4V5h-4v1ZM5 8v10h14V8H5Z"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="M9.6 16.2 4.8 11.4l1.4-1.4 3.4 3.4 8-8 1.4 1.4-9.4 9.4Z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8V5Zm5 0h3v14h-3V5Z"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.14v13.72L19 12 8 5.14Z"/></symbol>
 
       <!-- Logos de technologies : generes par scripts/fetch_tech_icons.py.
            Ne pas editer a la main, le script ecrase ce bloc. -->
@@ -293,69 +295,103 @@
     </section>
 
     <!-- ============================================================
-         Services
+         Services — carrousel de trois blocs.
+         Etat par defaut : blocs empiles. carousel.js ajoute
+         .carousel--ready pour passer en horizontal, donc si le JS
+         echoue on garde trois blocs lisibles au lieu d'un seul visible.
          ============================================================ -->
     <section class="section section--surface" id="services">
       <div class="container">
         <p class="eyebrow">Services</p>
         <h2 class="section-title">Ce que je <span>réalise</span></h2>
         <p class="section-lead">
-          De la conception de l'architecture au déploiement, sur le web comme
-          sur mobile.
+          Trois façons de travailler ensemble, de la conception d'une
+          application à la montée en compétence de vos équipes.
         </p>
 
-        <div class="card-grid">
-          <article class="card">
-            <svg class="card__icon" aria-hidden="true"><use href="#i-code" /></svg>
-            <h3 class="card__title">Développement Web</h3>
-            <p class="card__text">
-              Applications modernes et performantes avec Angular, Next.js et
-              TypeScript. Interfaces soignées, ergonomiques, orientées
-              expérience utilisateur.
-            </p>
-          </article>
+        <div class="carousel" id="services-carousel">
+          <div class="carousel__viewport">
+            <div class="carousel__track" id="services-track">
 
-          <article class="card">
-            <svg class="card__icon" aria-hidden="true"><use href="#i-mobile" /></svg>
-            <h3 class="card__title">Développement Mobile</h3>
-            <p class="card__text">
-              Applications mobiles multiplateformes avec Flutter et Dart. Deux
-              applications livrées en production : KEL et LONIA.
-            </p>
-          </article>
+              <article class="service" aria-labelledby="service-dev">
+                <svg class="service__icon" aria-hidden="true"><use href="#i-code" /></svg>
+                <h3 class="service__title" id="service-dev">Développement</h3>
+                <p class="service__text">
+                  Je conçois et développe des applications sur mesure, du site
+                  vitrine à la plateforme métier complexe, sur le web comme sur
+                  mobile. J'interviens sur toute la chaîne : comprendre le besoin
+                  réel, concevoir une architecture qui tiendra dans le temps,
+                  construire l'interface et les services qui la font tourner,
+                  sécuriser les accès, mettre en production et accompagner
+                  ensuite.
+                </p>
+                <p class="service__text">
+                  Je travaille avec une exigence constante sur la performance, la
+                  fiabilité et la clarté du code — pour que ce que je livre reste
+                  maintenable et puisse évoluer sans se casser.
+                </p>
+              </article>
 
-          <article class="card">
-            <svg class="card__icon" aria-hidden="true"><use href="#i-server" /></svg>
-            <h3 class="card__title">Back-End &amp; API</h3>
-            <p class="card__text">
-              API REST robustes et sécurisées avec Spring Boot, authentification
-              Keycloak, architectures modulaires et microservices.
-            </p>
-          </article>
+              <article class="service" aria-labelledby="service-ia">
+                <svg class="service__icon" aria-hidden="true"><use href="#i-sparkle" /></svg>
+                <h3 class="service__title" id="service-ia">Intégration d'intelligence artificielle</h3>
+                <p class="service__text">
+                  J'intègre l'intelligence artificielle au cœur des applications,
+                  là où elle fait réellement gagner du temps plutôt que là où
+                  elle fait joli. Analyse et extraction automatique
+                  d'informations dans des documents, génération de contenu, aide
+                  à la décision, recherche intelligente.
+                </p>
+                <p class="service__text">
+                  Je conçois les services qui font le pont entre les modèles et
+                  vos outils métier, avec un souci permanent de la fiabilité des
+                  résultats et de la maîtrise des coûts d'usage.
+                </p>
+              </article>
 
-          <article class="card">
-            <svg class="card__icon" aria-hidden="true"><use href="#i-sparkle" /></svg>
-            <h3 class="card__title">Intégration IA</h3>
-            <p class="card__text">
-              Intégration de modèles d'intelligence artificielle via API, avec
-              FastAPI et Python. Microservices d'analyse et de génération de
-              contenu.
-            </p>
-          </article>
+              <article class="service" aria-labelledby="service-formation">
+                <svg class="service__icon" aria-hidden="true"><use href="#i-graduation" /></svg>
+                <h3 class="service__title" id="service-formation">Formation</h3>
+                <p class="service__text">
+                  Je forme les équipes et les personnes qui débutent au
+                  développement moderne. Les fondamentaux d'abord, puis les
+                  pratiques qui font la différence sur la durée : structurer son
+                  code, travailler à plusieurs sans se marcher dessus, maîtriser
+                  ses outils du quotidien.
+                </p>
+                <p class="service__text">
+                  Je m'adapte au niveau réel des participants et je privilégie la
+                  pratique : on apprend en construisant quelque chose qui
+                  fonctionne.
+                </p>
+                <a class="service__link" href="https://www.facebook.com/share/v/1Ewaoy9zYP/"
+                  target="_blank" rel="noopener noreferrer">
+                  Voir une session
+                  <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+                </a>
+              </article>
 
-          <article class="card">
-            <svg class="card__icon" aria-hidden="true"><use href="#i-graduation" /></svg>
-            <h3 class="card__title">Formation JavaScript</h3>
-            <p class="card__text">
-              Fondamentaux du développement moderne : JavaScript, TypeScript,
-              Angular, bonnes pratiques et organisation du code.
-            </p>
-            <a href="https://www.facebook.com/share/v/1Ewaoy9zYP/" class="card__link" target="_blank"
-              rel="noopener noreferrer">
-              En savoir plus
-              <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
-            </a>
-          </article>
+            </div>
+          </div>
+
+          <!-- Un defilement automatique sans moyen de l'arreter prive le
+               visiteur du controle de sa lecture (WCAG 2.2.2). Le survol ne
+               suffit pas : il ne couvre ni le clavier ni le tactile. -->
+          <div class="carousel__controls">
+            <button type="button" class="carousel__toggle" id="services-toggle"
+              aria-label="Mettre en pause le défilement automatique">
+              <svg class="icon carousel__icon-pause" aria-hidden="true"><use href="#i-pause" /></svg>
+              <svg class="icon carousel__icon-play" aria-hidden="true"><use href="#i-play" /></svg>
+            </button>
+
+            <ul class="carousel__dots" id="services-dots">
+              <li><button type="button" data-index="0" aria-label="Afficher : Développement" aria-current="true"></button></li>
+              <li><button type="button" data-index="1" aria-label="Afficher : Intégration d'intelligence artificielle"></button></li>
+              <li><button type="button" data-index="2" aria-label="Afficher : Formation"></button></li>
+            </ul>
+
+            <p class="sr-only" role="status" aria-live="polite" id="services-status"></p>
+          </div>
         </div>
       </div>
     </section>

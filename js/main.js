@@ -1,9 +1,11 @@
 import { initTheme, toggleTheme } from "./theme.js";
 import { initNav } from "./nav.js";
+import { initCarousel } from "./carousel.js";
 import { initAnimations } from "./animations.js";
 
 initTheme();
 initNav();
+initCarousel();
 
 document.querySelector("#theme-toggle")?.addEventListener("click", toggleTheme);
 
