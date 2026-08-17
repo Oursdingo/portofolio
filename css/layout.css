@@ -112,3 +112,159 @@
 main {
   padding-top: var(--header-h);
 }
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: var(--space-24) var(--space-16);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: var(--space-16);
+  position: relative;
+}
+
+.hero__name {
+  font-size: var(--fs-4xl);
+  margin-bottom: var(--space-4);
+}
+
+.hero__tagline {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--accent);
+  min-height: 1.6em;
+  margin-bottom: var(--space-6);
+}
+
+.hero__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: -0.12em;
+  animation: caret-blink 1s steps(2) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero__pitch {
+  color: var(--text-muted);
+  max-width: 56ch;
+  margin-bottom: var(--space-8);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.hero__visual img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Statistiques ---------- */
+.stats {
+  padding-block: var(--space-12);
+  border-block: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__label {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ---------- À propos ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.about__visual img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.about__text {
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+  max-width: 60ch;
+}
+
+.about__facts {
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-8);
+}
+
+.about__facts li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.about__facts .icon {
+  color: var(--accent);
+}
+
+/* ---------- Grille de cartes ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}

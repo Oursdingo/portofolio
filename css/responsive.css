@@ -2,6 +2,25 @@
    responsive.css — points de rupture
    ============================================================ */
 
+@media (max-width: 1024px) {
+  .hero__inner,
+  .about {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .hero__visual,
+  .about__visual {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-4);
+  }
+}
+
 @media (max-width: 860px) {
   .burger {
     display: inline-flex;
@@ -45,8 +64,30 @@
   }
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  .hero {
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 400px) {
   .logo__text {
     font-size: var(--fs-base);
+  }
+
+  .stats__grid {
+    grid-template-columns: 1fr;
   }
 }
