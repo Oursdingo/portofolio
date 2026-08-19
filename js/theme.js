@@ -1,57 +1,72 @@
 /**
- * Gestion du thème clair/sombre (spec §12).
+ * Gestion du thème : Auto, Clair, Sombre.
  *
- * Ordre de priorité :
- *   1. le choix mémorisé par le visiteur ;
- *   2. sinon la préférence système ;
- *   3. sinon le clair.
+ * Trois états et non deux. Avec une simple bascule clair/sombre, le premier
+ * clic enferme définitivement le visiteur dans un choix manuel : plus aucun
+ * moyen de revenir à « suivre mon système ». L'état Auto rend ce retour
+ * possible.
  *
- * Tant qu'aucun choix n'est mémorisé, le site suit les changements système
- * en direct.
+ * La clé de stockage est versionnée. L'ancien site écrivait `theme` à chaque
+ * chargement de page, même sans action du visiteur, et y mettait « dark » par
+ * défaut. Ces valeurs sont donc indiscernables d'un choix délibéré alors
+ * qu'elles n'en sont pas : les lire condamnerait tout ancien visiteur au
+ * thème sombre à vie. On repart d'une clé neuve, et les anciennes valeurs
+ * sont ignorées.
  */
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = "theme-mode";
+const MODES = ["auto", "light", "dark"];
 const root = document.documentElement;
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-function storedChoice() {
+const LIBELLES = {
+  auto: "Thème : automatique. Cliquer pour forcer le thème clair.",
+  light: "Thème : clair. Cliquer pour forcer le thème sombre.",
+  dark: "Thème : sombre. Cliquer pour suivre le système.",
+};
+
+function modeStocke() {
   try {
-    const value = localStorage.getItem(STORAGE_KEY);
-    return value === "dark" || value === "light" ? value : null;
+    const v = localStorage.getItem(STORAGE_KEY);
+    return MODES.includes(v) ? v : "auto";
   } catch {
     // localStorage indisponible (navigation privée stricte).
-    return null;
+    return "auto";
   }
 }
 
-export function applyTheme(theme) {
-  root.setAttribute("data-theme", theme);
+/** Traduit un mode en thème réellement appliqué. */
+function resoudre(mode) {
+  if (mode === "auto") return darkQuery.matches ? "dark" : "light";
+  return mode;
+}
+
+export function applyMode(mode) {
+  root.setAttribute("data-theme-mode", mode);
+  root.setAttribute("data-theme", resoudre(mode));
+
   const btn = document.querySelector("#theme-toggle");
   if (btn) {
-    btn.setAttribute("aria-pressed", String(theme === "dark"));
-    btn.setAttribute(
-      "aria-label",
-      theme === "dark" ? "Activer le thème clair" : "Activer le thème sombre"
-    );
+    btn.setAttribute("aria-label", LIBELLES[mode]);
+    // Trois états : `aria-pressed` ne saurait en décrire que deux.
+    btn.removeAttribute("aria-pressed");
   }
 }
 
 export function initTheme() {
-  const saved = storedChoice();
-  applyTheme(saved ?? (darkQuery.matches ? "dark" : "light"));
+  applyMode(modeStocke());
 
-  // Suit le système en direct, mais seulement tant que le visiteur
-  // n'a pas tranché lui-même.
-  darkQuery.addEventListener("change", (e) => {
-    if (storedChoice() === null) applyTheme(e.matches ? "dark" : "light");
+  // En mode auto, le site suit les changements de thème du système en direct.
+  darkQuery.addEventListener("change", () => {
+    if (modeStocke() === "auto") applyMode("auto");
   });
 }
 
-export function toggleTheme() {
-  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+export function cycleTheme() {
+  const suivant = MODES[(MODES.indexOf(modeStocke()) + 1) % MODES.length];
   try {
-    localStorage.setItem(STORAGE_KEY, next);
+    localStorage.setItem(STORAGE_KEY, suivant);
   } catch {
     // Le thème s'appliquera quand même, sans persistance.
   }
-  applyTheme(next);
+  applyMode(suivant);
 }

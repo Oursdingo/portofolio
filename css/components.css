@@ -75,14 +75,18 @@
   background: var(--accent-soft);
 }
 
-/* Le soleil s'affiche en clair (cliquer = passer en sombre),
-   la lune s'affiche en sombre. */
-.theme-toggle__moon,
-[data-theme="dark"] .theme-toggle__sun {
+/* L'icone affichee suit le MODE choisi, pas le theme rendu : en mode auto
+   on montre le moniteur, meme si le theme resolu est sombre. C'est ce qui
+   permet au visiteur de savoir qu'il suit son systeme. */
+.theme-toggle__auto,
+.theme-toggle__sun,
+.theme-toggle__moon {
   display: none;
 }
 
-[data-theme="dark"] .theme-toggle__moon {
+[data-theme-mode="auto"] .theme-toggle__auto,
+[data-theme-mode="light"] .theme-toggle__sun,
+[data-theme-mode="dark"] .theme-toggle__moon {
   display: block;
 }
 

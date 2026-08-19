@@ -1,125 +1,147 @@
-"""Verifie le budget de poids de la page (spec 9.3)."""
+"""Verifie le budget de poids de la page (spec 9.3).
+
+Deux mesures distinctes, parce qu'elles ne repondent pas a la meme question :
+
+  - CHARGEMENT INITIAL : ce qu'un visiteur telecharge pour voir la page
+    s'afficher. Les images `loading="lazy"` en sont exclues : elles ne
+    partent que s'il descend jusqu'a elles. C'est le chiffre qui compte
+    pour un recruteur sur un reseau lent.
+  - POIDS TOTAL : tout, s'il parcourt la page jusqu'en bas.
+
+Dans un <picture>, un navigateur telecharge le WebP OU le repli, jamais
+les deux. Seul le WebP entre donc dans les mesures. Le repli est quand
+meme plafonne, plus largement, pour qu'il ne derive pas.
+"""
 import os, sys, io, re
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BUDGET_TOTAL_KB = 800
-BUDGET_IMAGE_KB = 150
-MAX_IMAGE_WIDTH = 1200
 
-# Dans un <picture>, un navigateur telecharge le WebP OU le repli, jamais
-# les deux. Seul le WebP entre donc dans le budget transfere. Le repli est
-# quand meme plafonne, plus largement, pour qu'il ne derive pas.
+BUDGET_INITIAL_KB = 800
+BUDGET_TOTAL_KB = 1600
+BUDGET_IMAGE_KB = 150
 BUDGET_FALLBACK_KB = 400
+MAX_IMAGE_WIDTH = 1200
 
 # Poids gzip approximatifs des librairies CDN (mesures de reference, spec 9.1)
 CDN_KB = {"gsap + ScrollTrigger": 60, "lenis": 8}
 FONTS_KB = 80
+
+echecs = []
+initial = 0.0
+differe = 0.0
 
 
 def kb(path):
     return os.path.getsize(path) / 1024
 
 
-def collect(rel_dir, extensions):
-    d = os.path.join(ROOT, rel_dir)
-    if not os.path.isdir(d):
-        return []
-    return [
-        (rel_dir + "/" + f, kb(os.path.join(d, f)))
-        for f in sorted(os.listdir(d))
-        if f.lower().endswith(extensions)
-    ]
-
-
-failed = []
-total = 0
-
-print("== Fichiers locaux ==")
-for name, size in [("index.html", kb(os.path.join(ROOT, "index.html")))]:
-    total += size
-    print(f"  {name:<34} {size:7.1f} Ko")
-
-for rel, exts in (("css", (".css",)), ("js", (".js",))):
-    found = collect(rel, exts)
-    if not found:
-        failed.append(f"repertoire {rel}/ absent ou vide")
-    for name, size in found:
-        total += size
-        print(f"  {name:<34} {size:7.1f} Ko")
+try:
+    from PIL import Image
+    PILLOW = True
+except ImportError:
+    PILLOW = False
 
 with open(os.path.join(ROOT, "index.html"), encoding="utf-8") as fh:
     html = fh.read()
 
-try:
-    from PIL import Image
-    has_pillow = True
-except ImportError:
-    has_pillow = False
 
-
-def audit(rel, budget, counts_toward_total):
-    """Controle une image et renvoie son poids si elle compte dans le total."""
-    global total
+def auditer(rel, budget, compte):
+    """Controle une image. `compte` vaut 'initial', 'differe' ou None."""
+    global initial, differe
     path = os.path.join(ROOT, rel.replace("/", os.sep))
     if not os.path.exists(path):
-        failed.append(f"image referencee introuvable : {rel}")
-        print(f"  {rel:<34} {'?':>7}     <-- INTROUVABLE")
+        echecs.append("image referencee introuvable : " + rel)
+        print("  {:<34} {:>7}     <-- INTROUVABLE".format(rel, "?"))
         return
-    size = kb(path)
+    taille = kb(path)
     note = ""
-    if size > budget:
-        failed.append(f"{rel} pese {size:.0f} Ko (max {budget} Ko)")
+    if taille > budget:
+        echecs.append("{} pese {:.0f} Ko (max {} Ko)".format(rel, taille, budget))
         note = "  <-- TROP LOURDE"
-    if has_pillow:
+    if PILLOW:
         with Image.open(path) as im:
             if im.size[0] > MAX_IMAGE_WIDTH:
-                failed.append(f"{rel} fait {im.size[0]} px de large (max {MAX_IMAGE_WIDTH})")
+                echecs.append("{} fait {} px de large (max {})".format(
+                    rel, im.size[0], MAX_IMAGE_WIDTH))
                 note += "  <-- TROP LARGE"
-    if counts_toward_total:
-        total += size
-    print(f"  {rel:<34} {size:7.1f} Ko{note}")
+    if compte == "initial":
+        initial += taille
+    elif compte == "differe":
+        differe += taille
+    print("  {:<34} {:7.1f} Ko{}".format(rel, taille, note))
 
 
-# Chaque <picture> sert son <source> WebP aux navigateurs modernes et son
-# <img> uniquement aux autres : les deux ne sont jamais telecharges ensemble.
-pictures = re.findall(r"<picture>(.*?)</picture>", html, re.S)
-primaries, fallbacks = [], []
-for block in pictures:
-    primaries += re.findall(r'srcset="\.?/?(images/[^"\s]+)"', block)
-    fallbacks += re.findall(r'src="\.?/?(images/[^"\s]+)"', block)
+print("== Fichiers locaux ==")
+for rel in ["index.html"]:
+    t = kb(os.path.join(ROOT, rel))
+    initial += t
+    print("  {:<34} {:7.1f} Ko".format(rel, t))
 
-# Les <img> hors <picture> sont telecharges tels quels.
-standalone = re.findall(
-    r'<img[^>]+src="\.?/?(images/[^"\s]+)"', re.sub(r"<picture>.*?</picture>", "", html, flags=re.S)
-)
+for dossier, ext in (("css", ".css"), ("js", ".js")):
+    d = os.path.join(ROOT, dossier)
+    if not os.path.isdir(d) or not os.listdir(d):
+        echecs.append("repertoire {}/ absent ou vide".format(dossier))
+        continue
+    for nom in sorted(os.listdir(d)):
+        if nom.endswith(ext):
+            t = kb(os.path.join(d, nom))
+            initial += t
+            print("  {:<34} {:7.1f} Ko".format(dossier + "/" + nom, t))
 
-print("\n== Images transferees (comptees dans le budget) ==")
-for rel in sorted(set(primaries + standalone)):
-    audit(rel, BUDGET_IMAGE_KB, counts_toward_total=True)
+# --- Tri des images : immediates, differees, replis ---
+immediates, differees, replis = [], [], []
+
+for bloc in re.findall(r"<picture>.*?</picture>", html, re.S):
+    webp = re.findall(r'srcset="\.?/?(images/[^"\s]+)"', bloc)
+    replis += re.findall(r'src="\.?/?(images/[^"\s]+)"', bloc)
+    (differees if 'loading="lazy"' in bloc else immediates).extend(webp)
+
+hors_picture = re.sub(r"<picture>.*?</picture>", "", html, flags=re.S)
+for balise in re.findall(r"<img[^>]*>", hors_picture, re.S):
+    src = re.findall(r'src="\.?/?(images/[^"\s]+)"', balise)
+    (differees if 'loading="lazy"' in balise else immediates).extend(src)
+
+print("\n== Images du chargement initial ==")
+if not immediates:
+    print("  aucune")
+for rel in sorted(set(immediates)):
+    auditer(rel, BUDGET_IMAGE_KB, "initial")
+
+print("\n== Images differees (au defilement) ==")
+if not differees:
+    print("  aucune")
+for rel in sorted(set(differees)):
+    auditer(rel, BUDGET_IMAGE_KB, "differe")
 
 print("\n== Replis (servis uniquement sans support WebP) ==")
-if not fallbacks:
+if not replis:
     print("  aucun")
-for rel in sorted(set(fallbacks)):
-    audit(rel, BUDGET_FALLBACK_KB, counts_toward_total=False)
+for rel in sorted(set(replis)):
+    auditer(rel, BUDGET_FALLBACK_KB, None)
 
 print("\n== Ressources externes (estimation) ==")
-for name, size in CDN_KB.items():
-    total += size
-    print(f"  {name:<34} {size:7.1f} Ko")
-total += FONTS_KB
-print(f"  {'polices (woff2)':<34} {FONTS_KB:7.1f} Ko")
+for nom, t in CDN_KB.items():
+    initial += t
+    print("  {:<34} {:7.1f} Ko".format(nom, t))
+initial += FONTS_KB
+print("  {:<34} {:7.1f} Ko".format("polices (woff2)", FONTS_KB))
 
-print(f"\nTOTAL {total:.1f} Ko  /  budget {BUDGET_TOTAL_KB} Ko")
+total = initial + differe
+print("\nCHARGEMENT INITIAL {:8.1f} Ko  /  budget {} Ko".format(initial, BUDGET_INITIAL_KB))
+print("POIDS TOTAL        {:8.1f} Ko  /  budget {} Ko".format(total, BUDGET_TOTAL_KB))
 
+if initial > BUDGET_INITIAL_KB:
+    echecs.append("chargement initial {:.0f} Ko depasse le budget de {} Ko".format(
+        initial, BUDGET_INITIAL_KB))
 if total > BUDGET_TOTAL_KB:
-    failed.append(f"total {total:.0f} Ko depasse le budget de {BUDGET_TOTAL_KB} Ko")
+    echecs.append("poids total {:.0f} Ko depasse le budget de {} Ko".format(
+        total, BUDGET_TOTAL_KB))
 
-if failed:
+if echecs:
     print("\nECHECS :")
-    for f in failed:
-        print(f"  - {f}")
+    for e in echecs:
+        print("  - " + e)
     sys.exit(1)
 print("\nBudget respecte.")

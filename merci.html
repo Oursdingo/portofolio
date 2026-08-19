@@ -7,16 +7,18 @@
   <title>Message envoyé — Sawadogo Adam Sharif</title>
   <meta name="robots" content="noindex" />
 
-  <script>
-    (function () {
-      var t = null;
-      try { t = localStorage.getItem("theme"); } catch (e) {}
-      if (t !== "dark" && t !== "light") {
-        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      }
-      document.documentElement.setAttribute("data-theme", t);
-    })();
-  </script>
+    <script>
+      (function () {
+        var m = null;
+        try { m = localStorage.getItem("theme-mode"); } catch (e) {}
+        if (m !== "light" && m !== "dark") m = "auto";
+        var t = m === "auto"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : m;
+        document.documentElement.setAttribute("data-theme-mode", m);
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
