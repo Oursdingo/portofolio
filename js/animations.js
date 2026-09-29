@@ -14,12 +14,25 @@ const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Effet machine à écrire. Remplace Typed.js (~12 Ko) par une vingtaine de lignes. */
 function typewriter(el) {
-  const words = (el.dataset.roles || "").split("|").filter(Boolean);
+  const lireRoles = () => (el.dataset.roles || "").split("|").filter(Boolean);
+  let words = lireRoles();
   if (words.length < 2) return;
 
   let wordIndex = 0;
   let charCount = words[0].length;
   let deleting = true;
+  let minuterie = null;
+
+  // Changement de langue : on repart du premier rôle, affiché en entier.
+  document.addEventListener("langchange", () => {
+    clearTimeout(minuterie);
+    words = lireRoles();
+    wordIndex = 0;
+    charCount = words[0].length;
+    deleting = true;
+    el.textContent = words[0];
+    minuterie = setTimeout(tick, 1800);
+  });
 
   const tick = () => {
     const word = words[wordIndex];
@@ -35,10 +48,10 @@ function typewriter(el) {
       wordIndex = (wordIndex + 1) % words.length;
       delay = 300;
     }
-    setTimeout(tick, delay);
+    minuterie = setTimeout(tick, delay);
   };
 
-  setTimeout(tick, 2200);
+  minuterie = setTimeout(tick, 2200);
 }
 
 /**

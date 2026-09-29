@@ -11,6 +11,8 @@
  * un chevron ou une puce. Une fois qu'on prend la main, on ne la lui reprend
  * plus au milieu d'une phrase.
  */
+import { t } from "./i18n.js";
+
 const INTERVALLE = 6000;
 
 export function initCarousel() {
@@ -58,9 +60,11 @@ export function initCarousel() {
       else d.removeAttribute("aria-current");
     });
     if (status) {
-      status.textContent = `Service ${index + 1} sur ${slides.length} : ${
-        slides[index].querySelector(".service__title").textContent
-      }`;
+      status.textContent = t("carousel.status", {
+        n: index + 1,
+        total: slides.length,
+        title: slides[index].querySelector(".service__title").textContent.trim(),
+      });
     }
   };
 
@@ -116,6 +120,9 @@ export function initCarousel() {
       reprendreLaMain(index + 1);
     }
   });
+
+  // Titre du service courant traduit : on met l'annonce à jour.
+  document.addEventListener("langchange", () => afficher(index));
 
   afficher(0);
   demarrer();

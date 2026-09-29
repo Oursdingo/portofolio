@@ -1,8 +1,10 @@
+import { initI18n } from "./i18n.js";
 import { initTheme, cycleTheme } from "./theme.js";
 import { initNav } from "./nav.js";
 import { initCarousel } from "./carousel.js";
 import { initAnimations } from "./animations.js";
 
+initI18n();
 initTheme();
 initNav();
 initCarousel();

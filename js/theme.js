@@ -13,16 +13,12 @@
  * thème sombre à vie. On repart d'une clé neuve, et les anciennes valeurs
  * sont ignorées.
  */
+import { t } from "./i18n.js";
+
 const STORAGE_KEY = "theme-mode";
 const MODES = ["auto", "light", "dark"];
 const root = document.documentElement;
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-const LIBELLES = {
-  auto: "Thème : automatique. Cliquer pour forcer le thème clair.",
-  light: "Thème : clair. Cliquer pour forcer le thème sombre.",
-  dark: "Thème : sombre. Cliquer pour suivre le système.",
-};
 
 function modeStocke() {
   try {
@@ -46,7 +42,7 @@ export function applyMode(mode) {
 
   const btn = document.querySelector("#theme-toggle");
   if (btn) {
-    btn.setAttribute("aria-label", LIBELLES[mode]);
+    btn.setAttribute("aria-label", t(`theme.${mode}`));
     // Trois états : `aria-pressed` ne saurait en décrire que deux.
     btn.removeAttribute("aria-pressed");
   }
@@ -59,6 +55,9 @@ export function initTheme() {
   darkQuery.addEventListener("change", () => {
     if (modeStocke() === "auto") applyMode("auto");
   });
+
+  // Le libellé du bouton suit la langue.
+  document.addEventListener("langchange", () => applyMode(modeStocke()));
 }
 
 export function cycleTheme() {

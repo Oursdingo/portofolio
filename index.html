@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="fr" data-theme="light">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Sawadogo Adam Sharif — Développeur Full Stack, Web &amp; Mobile
+    <title data-i18n="meta.title">
+      Sawadogo Adam Sharif — Full Stack Developer, Web &amp; Mobile
     </title>
     <meta
       name="description"
-      content="Sawadogo Adam Sharif — Développeur Full Stack web et mobile à Ouagadougou. Angular, Spring Boot, Flutter, Next.js. Plus de 3 ans d'expérience, intégration de modèles IA via API."
+      content="Sawadogo Adam Sharif — Full Stack web and mobile developer based in Ouagadougou. Angular, Spring Boot, Flutter, Next.js. 3+ years of experience, AI model integration via API."
     />
     <meta name="author" content="Sawadogo Adam Sharif" />
     <link rel="canonical" href="https://portofolio-jade-mu.vercel.app/" />
@@ -24,15 +24,16 @@
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
     <meta property="og:url" content="https://portofolio-jade-mu.vercel.app/" />
     <meta
       property="og:title"
-      content="Sawadogo Adam Sharif — Développeur Full Stack, Web &amp; Mobile"
+      content="Sawadogo Adam Sharif — Full Stack Developer, Web &amp; Mobile"
     />
     <meta
       property="og:description"
-      content="Développeur Full Stack web et mobile à Ouagadougou. Angular, Spring Boot, Flutter, Next.js et intégration de modèles IA."
+      content="Full Stack web and mobile developer based in Ouagadougou. Angular, Spring Boot, Flutter, Next.js and AI model integration."
     />
     <meta
       property="og:image"
@@ -44,11 +45,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Sawadogo Adam Sharif — Développeur Full Stack, Web &amp; Mobile"
+      content="Sawadogo Adam Sharif — Full Stack Developer, Web &amp; Mobile"
     />
     <meta
       name="twitter:description"
-      content="Développeur Full Stack web et mobile à Ouagadougou. Angular, Spring Boot, Flutter, Next.js et intégration de modèles IA."
+      content="Full Stack web and mobile developer based in Ouagadougou. Angular, Spring Boot, Flutter, Next.js and AI model integration."
     />
     <meta
       name="twitter:image"
@@ -73,6 +74,13 @@
             : m;
         document.documentElement.setAttribute("data-theme-mode", m);
         document.documentElement.setAttribute("data-theme", t);
+
+        // Langue : anglais par défaut, français si le visiteur l'a choisi.
+        var l = null;
+        try {
+          l = localStorage.getItem("lang");
+        } catch (e) {}
+        document.documentElement.lang = l === "fr" ? "fr" : "en";
       })();
     </script>
 
@@ -373,7 +381,7 @@
       </defs>
     </svg>
 
-    <a class="skip-link" href="#main">Aller au contenu principal</a>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
 
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
@@ -385,7 +393,7 @@
         <a
           href="#accueil"
           class="logo"
-          aria-label="Adam's Coding — retour en haut"
+          aria-label="Adam's Coding — back to top" data-i18n-aria-label="header.logo"
         >
           <svg
             class="logo__mark"
@@ -409,21 +417,32 @@
           <span class="logo__text">Adam's<strong>Coding</strong></span>
         </a>
 
-        <nav class="nav" id="nav" aria-label="Navigation principale">
-          <a href="#accueil" class="nav__link is-active">Accueil</a>
-          <a href="#a-propos" class="nav__link">À propos</a>
-          <a href="#experience" class="nav__link">Expérience</a>
-          <a href="#projets" class="nav__link">Projets</a>
-          <a href="#competences" class="nav__link">Compétences</a>
+        <nav class="nav" id="nav" aria-label="Main navigation" data-i18n-aria-label="nav.label">
+          <a href="#accueil" class="nav__link is-active" data-i18n="nav.home">Home</a>
+          <a href="#a-propos" class="nav__link" data-i18n="about.eyebrow">About</a>
+          <a href="#experience" class="nav__link" data-i18n="nav.experience">Experience</a>
+          <a href="#projets" class="nav__link" data-i18n="nav.projects">Projects</a>
+          <a href="#competences" class="nav__link" data-i18n="nav.skills">Skills</a>
           <a href="#contact" class="nav__link">Contact</a>
         </nav>
 
         <div class="header__actions">
           <button
             type="button"
+            class="lang-toggle"
+            id="lang-toggle"
+            aria-label="Switch the site to French"
+            data-i18n-aria-label="lang.toggle"
+          >
+            <span class="lang-toggle__option" data-lang="en">EN</span>
+            <span class="lang-toggle__option" data-lang="fr">FR</span>
+          </button>
+
+          <button
+            type="button"
             class="theme-toggle"
             id="theme-toggle"
-            aria-label="Thème : automatique. Cliquer pour forcer le thème clair."
+            aria-label="Theme: automatic. Click to force the light theme."
           >
             <svg class="icon theme-toggle__auto" aria-hidden="true">
               <use href="#i-auto" />
@@ -442,7 +461,7 @@
             id="burger"
             aria-expanded="false"
             aria-controls="nav"
-            aria-label="Ouvrir le menu"
+            aria-label="Open menu"
           >
             <svg class="icon burger__open" aria-hidden="true">
               <use href="#i-menu" />
@@ -467,21 +486,17 @@
             <p class="hero__tagline">
               <span
                 class="hero__role"
-                data-roles="Développeur Full Stack|Développeur Mobile Flutter|Architecte logiciel|Intégrateur de modèles IA"
-                >Développeur Full Stack</span
+                data-roles="Full Stack Developer|Flutter Mobile Developer|Software Architect|AI Model Integrator" data-i18n-data-roles="hero.roles"
+                 data-i18n="role.fullstack">Full Stack Developer</span
               ><span class="hero__caret" aria-hidden="true"></span>
             </p>
-            <p class="hero__pitch">
-              Développeur Full Stack polyvalent, web et mobile, avec plus de 3
-              ans d'expérience. Je conçois des applications modernes avec
-              Angular, Spring Boot et Flutter, et j'intègre des modèles
-              d'intelligence artificielle via API. Modélisation UML,
-              architecture logicielle, méthodologie Agile.
+            <p class="hero__pitch" data-i18n="hero.pitch">
+              Versatile Full Stack developer, web and mobile, with 3+ years of experience. I build modern applications with Angular, Spring Boot and Flutter, and I integrate artificial intelligence models via API. UML modeling, software architecture, Agile methodology.
             </p>
 
             <div class="hero__actions">
               <a href="#projets" class="btn btn--primary">
-                Voir mes projets
+                <span data-i18n="hero.cta">See my projects</span>
                 <svg class="icon" aria-hidden="true">
                   <use href="#i-arrow-down" />
                 </svg>
@@ -494,7 +509,7 @@
                 <svg class="icon" aria-hidden="true">
                   <use href="#i-download" />
                 </svg>
-                Télécharger mon CV
+                <span data-i18n="cv.download">Download my resume</span>
               </a>
             </div>
 
@@ -549,7 +564,7 @@
               />
               <img
                 src="images/optimized/profil-hero.png"
-                alt="Portrait de Sawadogo Adam Sharif"
+                alt="Portrait of Sawadogo Adam Sharif" data-i18n-alt="hero.imgAlt"
                 width="800"
                 height="800"
                 fetchpriority="high"
@@ -562,32 +577,32 @@
       <!-- ============================================================
          Statistiques
          ============================================================ -->
-      <section class="stats" id="stats" aria-label="Chiffres clés">
+      <section class="stats" id="stats" aria-label="Key figures" data-i18n-aria-label="stats.label">
         <div class="container">
           <ul class="stats__grid">
             <li class="stat">
               <span class="stat__value" data-count-to="3" data-suffix="+"
                 >3+</span
               >
-              <span class="stat__label">Années d'expérience</span>
+              <span class="stat__label" data-i18n="stats.years">Years of experience</span>
             </li>
             <li class="stat">
               <span class="stat__value" data-count-to="10" data-suffix="+"
                 >10+</span
               >
-              <span class="stat__label">Projets réalisés</span>
+              <span class="stat__label" data-i18n="stats.projects">Projects delivered</span>
             </li>
             <li class="stat">
               <span class="stat__value" data-count-to="2" data-suffix=""
                 >2</span
               >
-              <span class="stat__label">Applications mobiles</span>
+              <span class="stat__label" data-i18n="stats.mobile">Mobile apps</span>
             </li>
             <li class="stat">
               <span class="stat__value" data-count-to="20" data-suffix="+"
                 >20+</span
               >
-              <span class="stat__label">Technologies maîtrisées</span>
+              <span class="stat__label" data-i18n="stats.tech">Technologies mastered</span>
             </li>
           </ul>
         </div>
@@ -606,7 +621,7 @@
               />
               <img
                 src="images/optimized/profil-about.png"
-                alt="Sawadogo Adam Sharif au travail"
+                alt="Sawadogo Adam Sharif at work" data-i18n-alt="about.imgAlt"
                 width="800"
                 height="800"
                 loading="lazy"
@@ -615,21 +630,15 @@
           </div>
 
           <div class="about__content">
-            <p class="eyebrow">À propos</p>
-            <h2 class="section-title">
-              Développeur <span>Full Stack</span>, web et mobile
+            <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+            <h2 class="section-title" data-i18n-html="about.title">
+              <span>Full Stack</span> developer, web and mobile
             </h2>
-            <p class="about__text">
-              Développeur Full Stack polyvalent, avec plus de 3 ans d'expérience
-              académique et professionnelle. Mon expertise couvre la conception
-              d'applications modernes avec Angular, Spring Boot et Flutter, la
-              modélisation UML et les architectures logicielles, ainsi que
-              l'intégration de modèles d'intelligence artificielle via API.
+            <p class="about__text" data-i18n="about.text1">
+              Versatile Full Stack developer with 3+ years of academic and professional experience. My expertise covers building modern applications with Angular, Spring Boot and Flutter, UML modeling and software architecture, as well as integrating artificial intelligence models via API.
             </p>
-            <p class="about__text">
-              Je suis à l'aise avec les outils de développement assisté par IA.
-              Autonome, responsable et respectueux, avec un sens aigu du travail
-              en équipe et une capacité à travailler efficacement sous pression.
+            <p class="about__text" data-i18n="about.text2">
+              I am comfortable with AI-assisted development tools. Autonomous, responsible and respectful, with a strong sense of teamwork and the ability to work effectively under pressure.
             </p>
 
             <ul class="about__facts">
@@ -641,19 +650,19 @@
                 <svg class="icon" aria-hidden="true">
                   <use href="#i-briefcase" />
                 </svg>
-                Switch Maker — depuis juin 2025
+                <span data-i18n="about.job">Switch Maker — since June 2025</span>
               </li>
               <li>
                 <svg class="icon" aria-hidden="true">
                   <use href="#i-graduation" />
                 </svg>
-                Licence Informatique
+                <span data-i18n="edu.degree">Bachelor's Degree in Computer Science</span>
               </li>
               <li>
                 <svg class="icon" aria-hidden="true">
                   <use href="#i-check" />
                 </svg>
-                Français natif · Anglais B2
+                <span data-i18n="about.languages">Native French · English B2</span>
               </li>
             </ul>
 
@@ -665,7 +674,7 @@
               <svg class="icon" aria-hidden="true">
                 <use href="#i-download" />
               </svg>
-              Télécharger mon CV
+              <span data-i18n="cv.download">Download my resume</span>
             </a>
           </div>
         </div>
@@ -680,10 +689,9 @@
       <section class="section section--surface" id="services">
         <div class="container">
           <p class="eyebrow">Services</p>
-          <h2 class="section-title">Ce que je <span>réalise</span></h2>
-          <p class="section-lead">
-            Trois façons de travailler ensemble, de la conception d'une
-            application à la montée en compétence de vos équipes.
+          <h2 class="section-title" data-i18n-html="services.title">What I <span>deliver</span></h2>
+          <p class="section-lead" data-i18n="services.lead">
+            Three ways to work together, from designing an application to upskilling your teams.
           </p>
 
           <div class="carousel" id="services-carousel">
@@ -694,23 +702,14 @@
                     <svg class="service__icon" aria-hidden="true">
                       <use href="#i-code" />
                     </svg>
-                    <h3 class="service__title" id="service-dev">
-                      Développement
+                    <h3 class="service__title" id="service-dev" data-i18n="services.dev.title">
+                      Development
                     </h3>
-                    <p class="service__text">
-                      Je conçois et développe des applications sur mesure, du
-                      site vitrine à la plateforme métier complexe, sur le web
-                      comme sur mobile. J'interviens sur toute la chaîne :
-                      comprendre le besoin réel, concevoir une architecture qui
-                      tiendra dans le temps, construire l'interface et les
-                      services qui la font tourner, sécuriser les accès, mettre
-                      en production et accompagner ensuite.
+                    <p class="service__text" data-i18n="services.dev.text1">
+                      I design and build custom applications, from showcase websites to complex business platforms, on the web and on mobile. I work across the whole chain: understanding the real need, designing an architecture built to last, building the interface and the services behind it, securing access, deploying to production and providing support afterwards.
                     </p>
-                    <p class="service__text">
-                      Je travaille avec une exigence constante sur la
-                      performance, la fiabilité et la clarté du code pour que ce
-                      que je livre reste maintenable et puisse évoluer sans se
-                      casser.
+                    <p class="service__text" data-i18n="services.dev.text2">
+                      I hold myself to consistently high standards of performance, reliability and code clarity, so that what I deliver stays maintainable and can evolve without breaking.
                     </p>
                   </div>
                   <div class="service__visual" aria-hidden="true">
@@ -890,21 +889,14 @@
                     <svg class="service__icon" aria-hidden="true">
                       <use href="#i-sparkle" />
                     </svg>
-                    <h3 class="service__title" id="service-ia">
-                      Intégration d'intelligence artificielle
+                    <h3 class="service__title" id="service-ia" data-i18n="services.ai.title">
+                      Artificial Intelligence Integration
                     </h3>
-                    <p class="service__text">
-                      J'intègre l'intelligence artificielle au cœur des
-                      applications, là où elle fait réellement gagner du temps
-                      plutôt que là où elle fait joli. Analyse et extraction
-                      automatique d'informations dans des documents, génération
-                      de contenu, aide à la décision, recherche intelligente.
+                    <p class="service__text" data-i18n="services.ai.text1">
+                      I bring artificial intelligence into the heart of applications, where it genuinely saves time rather than where it just looks good. Automated analysis and extraction of information from documents, content generation, decision support, smart search.
                     </p>
-                    <p class="service__text">
-                      Je conçois les services qui font le pont entre les modèles
-                      et vos outils métier, avec un souci permanent de la
-                      fiabilité des résultats et de la maîtrise des coûts
-                      d'usage.
+                    <p class="service__text" data-i18n="services.ai.text2">
+                      I design the services that bridge the models and your business tools, with constant attention to the reliability of results and control of usage costs.
                     </p>
                   </div>
                   <div class="service__visual" aria-hidden="true">
@@ -966,20 +958,14 @@
                     <svg class="service__icon" aria-hidden="true">
                       <use href="#i-graduation" />
                     </svg>
-                    <h3 class="service__title" id="service-formation">
-                      Formation
+                    <h3 class="service__title" id="service-formation" data-i18n="services.training.title">
+                      Training
                     </h3>
-                    <p class="service__text">
-                      Je forme les équipes et les personnes qui débutent au
-                      développement moderne. Les fondamentaux d'abord, puis les
-                      pratiques qui font la différence sur la durée : structurer
-                      son code, travailler à plusieurs sans se marcher dessus,
-                      maîtriser ses outils du quotidien.
+                    <p class="service__text" data-i18n="services.training.text1">
+                      I train teams and newcomers in modern development. Fundamentals first, then the practices that make a difference in the long run: structuring your code, collaborating without stepping on each other's toes, mastering your everyday tools.
                     </p>
-                    <p class="service__text">
-                      Je m'adapte au niveau réel des participants et je
-                      privilégie la pratique : on apprend en construisant
-                      quelque chose qui fonctionne.
+                    <p class="service__text" data-i18n="services.training.text2">
+                      I adapt to the participants' actual level and favor hands-on practice: we learn by building something that works.
                     </p>
                     <a
                       class="service__link"
@@ -987,7 +973,7 @@
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Voir une session
+                      <span data-i18n="services.training.link">Watch a session</span>
                       <svg class="icon" aria-hidden="true">
                         <use href="#i-external" />
                       </svg>
@@ -1081,7 +1067,7 @@
                 type="button"
                 class="carousel__arrow carousel__arrow--prev"
                 id="services-prev"
-                aria-label="Service précédent"
+                aria-label="Previous service" data-i18n-aria-label="carousel.prev"
                 aria-controls="services-track"
               >
                 <svg class="icon" aria-hidden="true">
@@ -1094,7 +1080,7 @@
                   <button
                     type="button"
                     data-index="0"
-                    aria-label="Afficher : Développement"
+                    aria-label="Show: Development" data-i18n-aria-label="carousel.dot1"
                     aria-current="true"
                   ></button>
                 </li>
@@ -1102,14 +1088,14 @@
                   <button
                     type="button"
                     data-index="1"
-                    aria-label="Afficher : Intégration d'intelligence artificielle"
+                    aria-label="Show: Artificial Intelligence Integration" data-i18n-aria-label="carousel.dot2"
                   ></button>
                 </li>
                 <li>
                   <button
                     type="button"
                     data-index="2"
-                    aria-label="Afficher : Formation"
+                    aria-label="Show: Training" data-i18n-aria-label="carousel.dot3"
                   ></button>
                 </li>
               </ul>
@@ -1118,7 +1104,7 @@
                 type="button"
                 class="carousel__arrow carousel__arrow--next"
                 id="services-next"
-                aria-label="Service suivant"
+                aria-label="Next service" data-i18n-aria-label="carousel.next"
                 aria-controls="services-track"
               >
                 <svg class="icon" aria-hidden="true">
@@ -1142,11 +1128,10 @@
          ============================================================ -->
       <section class="section" id="experience">
         <div class="container">
-          <p class="eyebrow">Parcours</p>
-          <h2 class="section-title">Expérience <span>professionnelle</span></h2>
-          <p class="section-lead">
-            Deux postes menés en parallèle : le développement de plateformes
-            institutionnelles et le pilotage de projets en agence.
+          <p class="eyebrow" data-i18n="experience.eyebrow">Career</p>
+          <h2 class="section-title" data-i18n-html="experience.title">Professional <span>experience</span></h2>
+          <p class="section-lead" data-i18n="experience.lead">
+            Two roles held in parallel: building institutional platforms and leading projects at an agency.
           </p>
 
           <ol class="timeline">
@@ -1155,42 +1140,33 @@
             <li class="timeline__item">
               <div class="timeline__dot" aria-hidden="true"></div>
               <div class="timeline__body">
-                <p class="timeline__period">Juin 2025 — Présent</p>
-                <h3 class="timeline__role">Développeur Full Stack</h3>
+                <p class="timeline__period" data-i18n="experience.sm.period">June 2025 — Present</p>
+                <h3 class="timeline__role" data-i18n="role.fullstack">Full Stack Developer</h3>
                 <p class="timeline__company">Switch Maker</p>
                 <ul class="timeline__list">
-                  <li>
-                    Développement de plateformes web pour des institutions.
+                  <li data-i18n="experience.sm.item1">
+                    Building web platforms for institutions.
                   </li>
-                  <li>
-                    <strong>SIG</strong> — Système Intégré de Gestion, avec Odoo
-                    et Metabase pour les tableaux de bord. En cours de
-                    développement.
+                  <li data-i18n-html="experience.sm.item2">
+                    <strong>SIG</strong> — Integrated Management System, with Odoo and Metabase for dashboards. Currently in development.
                   </li>
-                  <li>
-                    <strong>DAICE</strong> — plateforme de promotion des
-                    investissements pour le CEPICI (Côte d'Ivoire).
+                  <li data-i18n-html="experience.sm.item3">
+                    <strong>DAICE</strong> — investment promotion platform for CEPICI (Côte d'Ivoire).
                   </li>
-                  <li>
-                    Conception du socle applicatif : architecture logicielle,
-                    modules métier, sécurité avec Keycloak.
+                  <li data-i18n="experience.sm.item4">
+                    Designing the application foundation: software architecture, business modules, security with Keycloak.
                   </li>
-                  <li>
-                    Intégration de modèles d'intelligence artificielle via API,
-                    développés avec FastAPI et Python.
+                  <li data-i18n="experience.sm.item5">
+                    Integrating artificial intelligence models via API, built with FastAPI and Python.
                   </li>
-                  <li>
-                    <strong>LONIA</strong> — application mobile d'apprentissage
-                    en ligne, réalisée avec Flutter.
+                  <li data-i18n-html="experience.sm.item6">
+                    <strong>LONIA</strong> — e-learning mobile app, built with Flutter.
                   </li>
-                  <li>
-                    <strong>KEL</strong> — application mobile de gestion de
-                    livraison, suivi des commandes et des courses, réalisée avec
-                    Flutter.
+                  <li data-i18n-html="experience.sm.item7">
+                    <strong>KEL</strong> — delivery management mobile app, tracking orders and rides, built with Flutter.
                   </li>
-                  <li>
-                    Analyse des besoins, modélisation UML, rédaction de comptes
-                    rendus, méthodologie Agile.
+                  <li data-i18n="experience.sm.item8">
+                    Requirements analysis, UML modeling, writing meeting reports, Agile methodology.
                   </li>
                 </ul>
                 <ul class="tag-list">
@@ -1209,23 +1185,22 @@
             <li class="timeline__item">
               <div class="timeline__dot" aria-hidden="true"></div>
               <div class="timeline__body">
-                <p class="timeline__period">En parallèle</p>
-                <h3 class="timeline__role">
-                  Responsable des projets informatiques
+                <p class="timeline__period" data-i18n="experience.bb.period">In parallel</p>
+                <h3 class="timeline__role" data-i18n="experience.bb.role">
+                  IT Project Manager
                 </h3>
-                <p class="timeline__company">
-                  BlendBloc — agence web marketing
+                <p class="timeline__company" data-i18n="experience.bb.company">
+                  BlendBloc — web marketing agency
                 </p>
                 <ul class="timeline__list">
-                  <li>Pilotage des projets techniques.</li>
-                  <li>
-                    Mise en place d'un espace de gestion de projet avec Notion :
-                    suivi des tâches, réunions et documents.
+                  <li data-i18n="experience.bb.item1">Leading technical projects.</li>
+                  <li data-i18n="experience.bb.item2">
+                    Setting up a project management workspace in Notion: task tracking, meetings and documents.
                   </li>
-                  <li>Développement du site vitrine de l'agence.</li>
+                  <li data-i18n="experience.bb.item3">Building the agency's showcase website.</li>
                 </ul>
                 <ul class="tag-list">
-                  <li class="tag">Gestion de projet</li>
+                  <li class="tag" data-i18n="tag.projectManagement">Project management</li>
                   <li class="tag">Notion</li>
                   <li class="tag">React</li>
                   <li class="tag">Vite</li>
@@ -1246,8 +1221,8 @@
       <section class="projects" id="projets">
         <div class="projects__stage">
           <div class="container projects__head">
-            <p class="eyebrow">Réalisations</p>
-            <h2 class="section-title">Mes <span>projets</span></h2>
+            <p class="eyebrow" data-i18n="projects.eyebrow">Work</p>
+            <h2 class="section-title" data-i18n-html="projects.title">My <span>projects</span></h2>
           </div>
 
           <div class="projects__viewport">
@@ -1262,7 +1237,7 @@
                       />
                       <img
                         src="images/optimized/sig.jpg"
-                        alt="Écran de connexion de la plateforme SIG"
+                        alt="SIG platform login screen" data-i18n-alt="projects.sig.alt"
                         width="1200"
                         height="592"
                         loading="lazy"
@@ -1272,15 +1247,13 @@
                   <div class="panel__content">
                     <p class="panel__index"><span>01</span> / 10</p>
                     <div class="panel__head">
-                      <h3 class="panel__title">
-                        SIG — Système Intégré de Gestion
+                      <h3 class="panel__title" data-i18n="projects.sig.title">
+                        SIG — Integrated Management System
                       </h3>
-                      <span class="badge badge--wip">En cours</span>
+                      <span class="badge badge--wip" data-i18n="badge.wip">In progress</span>
                     </div>
-                    <p class="panel__text">
-                      Plateforme institutionnelle de gestion développée chez
-                      Switch Maker, avec Odoo pour le socle métier et Metabase
-                      pour les tableaux de bord.
+                    <p class="panel__text" data-i18n="projects.sig.text">
+                      Institutional management platform developed at Switch Maker, with Odoo as the business core and Metabase for dashboards.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Odoo</li>
@@ -1301,7 +1274,7 @@
                       />
                       <img
                         src="images/optimized/daice.jpg"
-                        alt="Interface de la plateforme DAICE"
+                        alt="DAICE platform interface" data-i18n-alt="projects.daice.alt"
                         width="1200"
                         height="590"
                         loading="lazy"
@@ -1312,12 +1285,10 @@
                     <p class="panel__index"><span>02</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">DAICE — CEPICI</h3>
-                      <span class="badge badge--pro">Projet professionnel</span>
+                      <span class="badge badge--pro" data-i18n="badge.pro">Professional project</span>
                     </div>
-                    <p class="panel__text">
-                      Plateforme de promotion des investissements pour le
-                      CEPICI, en Côte d'Ivoire. Gestion de dossiers et de
-                      procédures administratives.
+                    <p class="panel__text" data-i18n="projects.daice.text">
+                      Investment promotion platform for CEPICI, in Côte d'Ivoire. Management of case files and administrative procedures.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Angular</li>
@@ -1338,7 +1309,7 @@
                       />
                       <img
                         src="images/optimized/blendbloc.jpg"
-                        alt="Page d'accueil du site BlendBloc"
+                        alt="BlendBloc website home page" data-i18n-alt="projects.blendbloc.alt"
                         width="1200"
                         height="598"
                         loading="lazy"
@@ -1349,13 +1320,10 @@
                     <p class="panel__index"><span>03</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">BlendBloc</h3>
-                      <span class="badge badge--live">En ligne</span>
+                      <span class="badge badge--live" data-i18n="badge.live">Live</span>
                     </div>
-                    <p class="panel__text">
-                      Site vitrine de l'agence web et marketing dont je pilote
-                      les projets informatiques. Conception et développement
-                      complets : identité en ligne, présentation des offres et
-                      parcours de prise de contact.
+                    <p class="panel__text" data-i18n="projects.blendbloc.text">
+                      Showcase website for the web and marketing agency whose IT projects I lead. End-to-end design and development: online identity, presentation of services and contact journey.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">React</li>
@@ -1368,7 +1336,7 @@
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Voir le site
+                      <span data-i18n="projects.visit">Visit the site</span>
                       <svg class="icon" aria-hidden="true">
                         <use href="#i-external" />
                       </svg>
@@ -1387,7 +1355,7 @@
                       />
                       <img
                         src="images/optimized/luxonera.jpg"
-                        alt="Interface de la plateforme Luxonera"
+                        alt="Luxonera platform interface" data-i18n-alt="projects.luxonera.alt"
                         width="1200"
                         height="563"
                         loading="lazy"
@@ -1398,11 +1366,10 @@
                     <p class="panel__index"><span>04</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">Luxonera</h3>
-                      <span class="badge badge--live">En ligne</span>
+                      <span class="badge badge--live" data-i18n="badge.live">Live</span>
                     </div>
-                    <p class="panel__text">
-                      Plateforme e-commerce de montres de luxe pour le marché
-                      burkinabè, avec prise de commande via WhatsApp.
+                    <p class="panel__text" data-i18n="projects.luxonera.text">
+                      E-commerce platform for luxury watches aimed at the Burkinabe market, with ordering via WhatsApp.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Next.js</li>
@@ -1414,7 +1381,7 @@
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Voir le site
+                      <span data-i18n="projects.visit">Visit the site</span>
                       <svg class="icon" aria-hidden="true">
                         <use href="#i-external" />
                       </svg>
@@ -1433,7 +1400,7 @@
                       />
                       <img
                         src="images/optimized/e-wari.jpg"
-                        alt="Écrans de l'application mobile e-Wari"
+                        alt="e-Wari mobile app screens" data-i18n-alt="projects.ewari.alt"
                         width="845"
                         height="727"
                         loading="lazy"
@@ -1444,14 +1411,10 @@
                     <p class="panel__index"><span>05</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">E-Wari</h3>
-                      <span class="badge">Projet personnel</span>
+                      <span class="badge" data-i18n="badge.personal">Personal project</span>
                     </div>
-                    <p class="panel__text">
-                      Application de gestion des finances personnelles pensée
-                      pour les jeunes d'Afrique de l'Ouest. Conception complète
-                      menée à terme : diagrammes UML détaillés, cahier des
-                      charges, architecture technique, documentation
-                      centralisée.
+                    <p class="panel__text" data-i18n="projects.ewari.text">
+                      Personal finance management app designed for young people in West Africa. Full design carried through to completion: detailed UML diagrams, requirements specification, technical architecture, centralized documentation.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Flutter</li>
@@ -1472,7 +1435,7 @@
                       />
                       <img
                         src="images/optimized/kel.jpg"
-                        alt="Écran de connexion de l'espace d'administration KEL"
+                        alt="KEL admin area login screen" data-i18n-alt="projects.kel.alt"
                         width="1016"
                         height="669"
                         loading="lazy"
@@ -1483,17 +1446,15 @@
                     <p class="panel__index"><span>06</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">KEL</h3>
-                      <span class="badge badge--pro">Projet professionnel</span>
+                      <span class="badge badge--pro" data-i18n="badge.pro">Professional project</span>
                     </div>
-                    <p class="panel__text">
-                      Application mobile de gestion de livraison permettant le
-                      suivi des commandes et des courses. Réalisée avec Flutter
-                      chez Switch Maker.
+                    <p class="panel__text" data-i18n="projects.kel.text">
+                      Delivery management mobile app for tracking orders and rides. Built with Flutter at Switch Maker.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Flutter</li>
                       <li class="tag">Dart</li>
-                      <li class="tag">API REST</li>
+                      <li class="tag" data-i18n="tag.restApi">REST API</li>
                     </ul>
                   </div>
                 </div>
@@ -1509,7 +1470,7 @@
                       />
                       <img
                         src="images/optimized/lonia.jpg"
-                        alt="Écran d'accueil de l'application mobile LONIA"
+                        alt="LONIA mobile app home screen" data-i18n-alt="projects.lonia.alt"
                         width="415"
                         height="900"
                         loading="lazy"
@@ -1520,11 +1481,10 @@
                     <p class="panel__index"><span>07</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">LONIA</h3>
-                      <span class="badge badge--pro">Projet professionnel</span>
+                      <span class="badge badge--pro" data-i18n="badge.pro">Professional project</span>
                     </div>
-                    <p class="panel__text">
-                      Application mobile d'apprentissage en ligne, réalisée avec
-                      Flutter chez Switch Maker.
+                    <p class="panel__text" data-i18n="projects.lonia.text">
+                      E-learning mobile app, built with Flutter at Switch Maker.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Flutter</li>
@@ -1544,7 +1504,7 @@
                       />
                       <img
                         src="images/optimized/dao.jpg"
-                        alt="Interface de la plateforme de gestion des DAO"
+                        alt="Tender document management platform interface" data-i18n-alt="projects.dao.alt"
                         width="1200"
                         height="628"
                         loading="lazy"
@@ -1554,19 +1514,15 @@
                   <div class="panel__content">
                     <p class="panel__index"><span>08</span> / 10</p>
                     <div class="panel__head">
-                      <h3 class="panel__title">
-                        Plateforme de gestion des DAO
+                      <h3 class="panel__title" data-i18n="projects.dao.title">
+                        Tender Document Management Platform
                       </h3>
                       <span class="badge badge--academic"
-                        >Projet de fin d'études</span
+                         data-i18n="badge.finalYear">Final-year project</span
                       >
                     </div>
-                    <p class="panel__text">
-                      Application d'analyse des dossiers d'appel d'offres avec
-                      suivi de la progression en temps réel, permissions par
-                      rôle (administrateur, rédacteur, relecteur, observateur)
-                      et architecture complète, du frontend jusqu'au
-                      microservice d'intelligence artificielle.
+                    <p class="panel__text" data-i18n="projects.dao.text">
+                      Tender document analysis application with real-time progress tracking, role-based permissions (administrator, writer, reviewer, observer) and a complete architecture, from the frontend to the artificial intelligence microservice.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Angular</li>
@@ -1589,7 +1545,7 @@
                       />
                       <img
                         src="images/optimized/etrack.jpg"
-                        alt="Tableau de bord de l'application eTrack"
+                        alt="eTrack app dashboard" data-i18n-alt="projects.etrack.alt"
                         width="1200"
                         height="675"
                         loading="lazy"
@@ -1600,12 +1556,10 @@
                     <p class="panel__index"><span>09</span> / 10</p>
                     <div class="panel__head">
                       <h3 class="panel__title">eTrack</h3>
-                      <span class="badge">Projet personnel</span>
+                      <span class="badge" data-i18n="badge.personal">Personal project</span>
                     </div>
-                    <p class="panel__text">
-                      Application de suivi des dépenses et de gestion financière
-                      personnelle, avec tableaux de bord pour visualiser les
-                      habitudes de consommation.
+                    <p class="panel__text" data-i18n="projects.etrack.text">
+                      Expense tracking and personal finance management app, with dashboards to visualize spending habits.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Next.js</li>
@@ -1624,7 +1578,7 @@
                       />
                       <img
                         src="images/optimized/hotellerie.jpg"
-                        alt="Interface de la plateforme hôtelière"
+                        alt="Hotel management platform interface" data-i18n-alt="projects.hotel.alt"
                         width="1200"
                         height="606"
                         loading="lazy"
@@ -1634,14 +1588,13 @@
                   <div class="panel__content">
                     <p class="panel__index"><span>10</span> / 10</p>
                     <div class="panel__head">
-                      <h3 class="panel__title">Plateforme hôtelière</h3>
+                      <h3 class="panel__title" data-i18n="projects.hotel.title">Hotel Management Platform</h3>
                       <span class="badge badge--academic"
-                        >Projet académique</span
+                         data-i18n="badge.academic">Academic project</span
                       >
                     </div>
-                    <p class="panel__text">
-                      Application de gestion des réservations et des services
-                      d'un établissement hôtelier.
+                    <p class="panel__text" data-i18n="projects.hotel.text">
+                      Application for managing the bookings and services of a hotel.
                     </p>
                     <ul class="tag-list">
                       <li class="tag">Java</li>
@@ -1674,15 +1627,14 @@
       <section class="section" id="competences">
         <div class="container">
           <p class="eyebrow">Stack</p>
-          <h2 class="section-title">Mes <span>compétences</span></h2>
-          <p class="section-lead">
-            Les technologies que j'utilise au quotidien, du front-end à
-            l'infrastructure.
+          <h2 class="section-title" data-i18n-html="skills.title">My <span>skills</span></h2>
+          <p class="section-lead" data-i18n="skills.lead">
+            The technologies I use every day, from front-end to infrastructure.
           </p>
 
           <div class="skills-grid">
             <article class="skill-block">
-              <h3 class="skill-block__title">Langages &amp; Frameworks</h3>
+              <h3 class="skill-block__title" data-i18n="skills.languages">Languages &amp; Frameworks</h3>
               <ul class="tag-list">
                 <li class="tag">Angular</li>
                 <li class="tag">Spring Boot</li>
@@ -1696,28 +1648,28 @@
             </article>
 
             <article class="skill-block">
-              <h3 class="skill-block__title">Architecture &amp; Méthodes</h3>
+              <h3 class="skill-block__title" data-i18n="skills.architecture">Architecture &amp; Methods</h3>
               <ul class="tag-list">
-                <li class="tag">Architecture logicielle</li>
-                <li class="tag">Modélisation UML</li>
-                <li class="tag">Méthodologie Agile</li>
-                <li class="tag">API REST</li>
+                <li class="tag" data-i18n="tag.softwareArchitecture">Software architecture</li>
+                <li class="tag" data-i18n="tag.uml">UML modeling</li>
+                <li class="tag" data-i18n="tag.agile">Agile methodology</li>
+                <li class="tag" data-i18n="tag.restApi">REST API</li>
                 <li class="tag">Microservices</li>
               </ul>
             </article>
 
             <article class="skill-block">
-              <h3 class="skill-block__title">Intelligence artificielle</h3>
+              <h3 class="skill-block__title" data-i18n="skills.ai">Artificial Intelligence</h3>
               <ul class="tag-list">
-                <li class="tag">Intégration de modèles via API</li>
+                <li class="tag" data-i18n="tag.modelIntegration">Model integration via API</li>
                 <li class="tag">FastAPI</li>
                 <li class="tag">Python</li>
-                <li class="tag">Développement assisté par IA</li>
+                <li class="tag" data-i18n="tag.aiAssisted">AI-assisted development</li>
               </ul>
             </article>
 
             <article class="skill-block">
-              <h3 class="skill-block__title">Outils &amp; Infrastructure</h3>
+              <h3 class="skill-block__title" data-i18n="skills.tools">Tools &amp; Infrastructure</h3>
               <ul class="tag-list">
                 <li class="tag">Git</li>
                 <li class="tag">GitHub</li>
@@ -1735,15 +1687,15 @@
             <article class="skill-block">
               <h3 class="skill-block__title">CMS</h3>
               <ul class="tag-list">
-                <li class="tag">Drupal (formation en cours)</li>
+                <li class="tag" data-i18n="tag.drupal">Drupal (training in progress)</li>
               </ul>
             </article>
 
             <article class="skill-block">
-              <h3 class="skill-block__title">Langues</h3>
+              <h3 class="skill-block__title" data-i18n="skills.spoken">Languages</h3>
               <ul class="tag-list">
-                <li class="tag">Français — langue maternelle</li>
-                <li class="tag">Anglais — intermédiaire B2</li>
+                <li class="tag" data-i18n="tag.french">French — native language</li>
+                <li class="tag" data-i18n="tag.english">English — upper intermediate (B2)</li>
               </ul>
             </article>
           </div>
@@ -1983,9 +1935,9 @@
          ============================================================ -->
       <section class="section section--surface" id="formation">
         <div class="container">
-          <p class="eyebrow">Bagage</p>
-          <h2 class="section-title">
-            Formation &amp; <span>certifications</span>
+          <p class="eyebrow" data-i18n="education.eyebrow">Background</p>
+          <h2 class="section-title" data-i18n-html="education.title">
+            Education &amp; <span>certifications</span>
           </h2>
 
           <div class="card-grid">
@@ -1993,33 +1945,33 @@
               <svg class="card__icon" aria-hidden="true">
                 <use href="#i-graduation" />
               </svg>
-              <h3 class="card__title">Licence Informatique</h3>
-              <p class="card__text">Formation initiale en informatique.</p>
+              <h3 class="card__title" data-i18n="edu.degree">Bachelor's Degree in Computer Science</h3>
+              <p class="card__text" data-i18n="education.degree.text">Initial education in computer science.</p>
             </article>
 
             <article class="card">
               <svg class="card__icon" aria-hidden="true">
                 <use href="#i-code" />
               </svg>
-              <h3 class="card__title">CMS Drupal</h3>
-              <p class="card__text">Formation en cours.</p>
-              <p><span class="badge badge--wip">En cours</span></p>
+              <h3 class="card__title" data-i18n="education.drupal.title">Drupal CMS</h3>
+              <p class="card__text" data-i18n="education.drupal.text">Training in progress.</p>
+              <p><span class="badge badge--wip" data-i18n="badge.wip">In progress</span></p>
             </article>
 
             <article class="card">
               <svg class="card__icon" aria-hidden="true">
                 <use href="#i-sparkle" />
               </svg>
-              <h3 class="card__title">Python, Bases de données &amp; IA</h3>
-              <p class="card__text">Certificats délivrés par Coursera.</p>
+              <h3 class="card__title" data-i18n="education.coursera.title">Python, Databases &amp; AI</h3>
+              <p class="card__text" data-i18n="education.coursera.text">Certificates issued by Coursera.</p>
             </article>
 
             <article class="card">
               <svg class="card__icon" aria-hidden="true">
                 <use href="#i-check" />
               </svg>
-              <h3 class="card__title">Marketing Digital</h3>
-              <p class="card__text">Certificat délivré par Force N.</p>
+              <h3 class="card__title" data-i18n="education.marketing.title">Digital Marketing</h3>
+              <p class="card__text" data-i18n="education.marketing.text">Certificate issued by Force N.</p>
             </article>
 
             <article class="card">
@@ -2027,7 +1979,7 @@
                 <use href="#i-server" />
               </svg>
               <h3 class="card__title">Spring Boot &amp; Angular</h3>
-              <p class="card__text">Formation dispensée par Switch Maker.</p>
+              <p class="card__text" data-i18n="education.switchmaker.text">Training provided by Switch Maker.</p>
             </article>
           </div>
         </div>
@@ -2040,10 +1992,9 @@
         <div class="container contact">
           <div class="contact__intro">
             <p class="eyebrow">Contact</p>
-            <h2 class="section-title">Travaillons <span>ensemble</span></h2>
-            <p class="section-lead">
-              Une opportunité, une collaboration ou une question ? Écrivez-moi,
-              je réponds rapidement.
+            <h2 class="section-title" data-i18n-html="contact.title">Let's work <span>together</span></h2>
+            <p class="section-lead" data-i18n="contact.lead">
+              An opportunity, a collaboration or a question? Write to me, I reply quickly.
             </p>
 
             <ul class="contact__list">
@@ -2100,7 +2051,7 @@
 
             <div class="field-row">
               <p class="field">
-                <label class="field__label" for="nom">Nom</label>
+                <label class="field__label" for="nom" data-i18n="contact.name">Name</label>
                 <input
                   class="field__input"
                   type="text"
@@ -2126,8 +2077,7 @@
             <div class="field-row">
               <p class="field">
                 <label class="field__label" for="telephone"
-                  >Téléphone
-                  <span class="field__optional">(facultatif)</span></label
+                   data-i18n-html="contact.phone">Phone <span class="field__optional">(optional)</span></label
                 >
                 <input
                   class="field__input"
@@ -2138,14 +2088,14 @@
                 />
               </p>
               <p class="field">
-                <label class="field__label" for="objet">Objet</label>
+                <label class="field__label" for="objet" data-i18n="contact.subject">Subject</label>
                 <input
                   class="field__input"
                   type="text"
                   id="objet"
                   name="objet"
                   required
-                  placeholder="Collaboration, opportunité…"
+                  placeholder="Collaboration, opportunity…" data-i18n-placeholder="contact.subjectPlaceholder"
                 />
               </p>
             </div>
@@ -2161,8 +2111,8 @@
               ></textarea>
             </p>
 
-            <button type="submit" class="btn btn--primary">
-              Envoyer le message
+            <button type="submit" class="btn btn--primary" data-i18n="contact.send">
+              Send message
             </button>
           </form>
         </div>
@@ -2174,8 +2124,8 @@
        ============================================================ -->
     <footer class="footer">
       <div class="container footer__inner">
-        <p class="footer__copy">
-          © 2026 Sawadogo Adam Sharif. Tous droits réservés.
+        <p class="footer__copy" data-i18n="footer.copy">
+          © 2026 Sawadogo Adam Sharif. All rights reserved.
         </p>
         <ul class="social social--sm">
           <li>
@@ -2225,7 +2175,7 @@
       href="#accueil"
       class="to-top"
       id="to-top"
-      aria-label="Retour en haut de page"
+      aria-label="Back to top" data-i18n-aria-label="footer.toTop"
     >
       <svg class="icon" aria-hidden="true"><use href="#i-arrow-up" /></svg>
     </a>
@@ -2235,7 +2185,7 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Sawadogo Adam Sharif",
-        "jobTitle": "Développeur Full Stack, Web & Mobile",
+        "jobTitle": "Full Stack Developer, Web & Mobile",
         "email": "mailto:sawadogosharif20@gmail.com",
         "telephone": "+22677468876",
         "url": "https://portofolio-jade-mu.vercel.app/",
