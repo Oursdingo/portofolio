@@ -5,6 +5,8 @@
  * animations.js, pas ici : recalculer la position de chaque section à chaque
  * pixel défilé — ce que faisait l'ancien app.js — coûte cher pour rien.
  */
+import { t } from "./i18n.js";
+
 export function initNav() {
   const header = document.querySelector("#header");
   const nav = document.querySelector("#nav");
@@ -15,15 +17,23 @@ export function initNav() {
     nav.classList.remove("is-open");
     burger.classList.remove("is-open");
     burger.setAttribute("aria-expanded", "false");
-    burger.setAttribute("aria-label", "Ouvrir le menu");
+    burger.setAttribute("aria-label", t("nav.open"));
   };
 
   burger.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     burger.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    burger.setAttribute("aria-label", t(open ? "nav.close" : "nav.open"));
   });
+
+  // Libellé dans la langue courante, dès maintenant puis à chaque changement.
+  const majLibelle = () => {
+    const open = nav.classList.contains("is-open");
+    burger.setAttribute("aria-label", t(open ? "nav.close" : "nav.open"));
+  };
+  majLibelle();
+  document.addEventListener("langchange", majLibelle);
 
   nav.querySelectorAll(".nav__link").forEach((link) => {
     link.addEventListener("click", closeMenu);

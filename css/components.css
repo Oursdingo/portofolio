@@ -103,6 +103,47 @@
   display: block;
 }
 
+/* ---------- Bascule de langue ---------- */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 40px;
+  padding: 4px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.lang-toggle__option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  transition: background 0.2s, color 0.2s;
+}
+
+/* L'état actif suit l'attribut `lang` de <html>, posé dès le <head> :
+   le bon bouton est allumé avant même le chargement du JavaScript. */
+:root[lang="en"] .lang-toggle__option[data-lang="en"],
+:root[lang="fr"] .lang-toggle__option[data-lang="fr"] {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
 /* ---------- Réseaux sociaux ---------- */
 .social {
   display: flex;

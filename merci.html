@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Message envoyé — Sawadogo Adam Sharif</title>
+  <title data-i18n="thanks.meta.title">Message sent — Sawadogo Adam Sharif</title>
   <meta name="robots" content="noindex" />
 
     <script>
@@ -17,6 +17,10 @@
           : m;
         document.documentElement.setAttribute("data-theme-mode", m);
         document.documentElement.setAttribute("data-theme", t);
+
+        var l = null;
+        try { l = localStorage.getItem("lang"); } catch (e) {}
+        document.documentElement.lang = l === "fr" ? "fr" : "en";
       })();
     </script>
 
@@ -27,6 +31,11 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=Sora:wght@600..700&display=swap" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
+
+  <script type="module">
+    import { initI18n } from "./js/i18n.js";
+    initI18n();
+  </script>
 
   <style>
     .thanks {
@@ -64,11 +73,11 @@
         <path d="M22 10 L27 16 L22 22" />
       </g>
     </svg>
-    <h1 class="thanks__title">Message bien reçu</h1>
-    <p class="thanks__text">
-      Merci de m'avoir écrit. Je vous réponds dans les meilleurs délais.
+    <h1 class="thanks__title" data-i18n="thanks.title">Message received</h1>
+    <p class="thanks__text" data-i18n="thanks.text">
+      Thank you for writing to me. I will get back to you as soon as possible.
     </p>
-    <a href="index.html" class="btn btn--primary">Retour au portfolio</a>
+    <a href="index.html" class="btn btn--primary" data-i18n="thanks.back">Back to portfolio</a>
   </main>
 </body>
 
