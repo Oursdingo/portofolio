@@ -2093,6 +2093,16 @@
             />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
+            <!-- Piège anti-spam : invisible pour un humain, FormSubmit rejette
+               tout envoi où un robot l'a rempli. -->
+            <input
+              type="text"
+              name="_honey"
+              style="display: none"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
             <!-- FormSubmit exige une URL absolue : une valeur relative est rejetée. -->
             <input
               type="hidden"
