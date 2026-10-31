@@ -2,7 +2,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/", "destination": "/fr", "permanent": true },
+    {
+      "source": "/",
+      "has": [{ "type": "header", "key": "accept-language", "value": "^[Ee][Nn]\\b.*" }],
+      "destination": "/en",
+      "permanent": false
+    },
+    { "source": "/", "destination": "/fr", "permanent": false },
     { "source": "/merci", "destination": "/fr/merci", "permanent": true }
   ]
 }
