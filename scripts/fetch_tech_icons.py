@@ -1,7 +1,7 @@
 """Genere les logos de technologies a partir de Simple Icons.
 
 Produit deux choses :
-  - les <symbol> des logos, injectes dans le sprite d'index.html entre les
+  - les <symbol> des logos, injectes dans le sprite de src/index.html entre les
     marqueurs TECH-ICONS ;
   - css/tech-icons.css, qui porte la couleur de marque de chaque logo.
 
@@ -153,9 +153,9 @@ for local, slug, libelle in TECHNOS:
     classes.append(f".tech--{local} {{ color: var(--t-{local}); }}")
 
 css = f"""/* ============================================================
-   tech-icons.css — couleurs de marque des logos de technologies
+   tech-icons.css : couleurs de marque des logos de technologies
 
-   GENERE PAR scripts/fetch_tech_icons.py — NE PAS EDITER A LA MAIN.
+   GENERE PAR scripts/fetch_tech_icons.py : NE PAS EDITER A LA MAIN.
    Source : Simple Icons v{VERSION} (SVG en CC0).
 
    Les logos quasi noirs sont eclaircis en mode sombre : a leur couleur
@@ -178,8 +178,8 @@ chemin_css = os.path.join(ROOT, "css", "tech-icons.css")
 with open(chemin_css, "w", encoding="utf-8") as fh:
     fh.write(css)
 
-# --- Injection des symboles dans le sprite d'index.html ---
-chemin_html = os.path.join(ROOT, "index.html")
+# --- Injection des symboles dans le sprite de src/index.html ---
+chemin_html = os.path.join(ROOT, "src", "index.html")
 with open(chemin_html, encoding="utf-8") as fh:
     html = fh.read()
 
@@ -193,7 +193,7 @@ if DEBUT in html and FIN in html:
         re.escape(DEBUT) + r".*?" + re.escape(FIN), lambda _: bloc, html, flags=re.S
     )
 else:
-    print("\nECHEC : marqueurs TECH-ICONS absents d'index.html.")
+    print("\nECHEC : marqueurs TECH-ICONS absents de src/index.html.")
     print("Ajouter ces deux lignes dans le <defs> du sprite :")
     print(DEBUT)
     print(FIN)
@@ -202,7 +202,7 @@ else:
 with open(chemin_html, "w", encoding="utf-8") as fh:
     fh.write(html)
 
-print(f"\n{len(symboles)} logos injectes dans index.html")
+print(f"\n{len(symboles)} logos injectes dans src/index.html")
 print(f"css/tech-icons.css ecrit ({os.path.getsize(chemin_css) / 1024:.1f} Ko)")
 print(f"poids des symboles : {len(bloc) / 1024:.1f} Ko")
 

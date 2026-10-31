@@ -55,9 +55,6 @@ export function initTheme() {
   darkQuery.addEventListener("change", () => {
     if (modeStocke() === "auto") applyMode("auto");
   });
-
-  // Le libellé du bouton suit la langue.
-  document.addEventListener("langchange", () => applyMode(modeStocke()));
 }
 
 export function cycleTheme() {

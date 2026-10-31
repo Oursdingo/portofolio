@@ -43,7 +43,7 @@ try:
 except ImportError:
     PILLOW = False
 
-with open(os.path.join(ROOT, "index.html"), encoding="utf-8") as fh:
+with open(os.path.join(ROOT, "fr", "index.html"), encoding="utf-8") as fh:
     html = fh.read()
 
 
@@ -74,7 +74,7 @@ def auditer(rel, budget, compte):
 
 
 print("== Fichiers locaux ==")
-for rel in ["index.html"]:
+for rel in ["fr/index.html"]:
     t = kb(os.path.join(ROOT, rel))
     initial += t
     print("  {:<34} {:7.1f} Ko".format(rel, t))

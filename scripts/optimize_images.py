@@ -126,6 +126,6 @@ print(f"WebP (servi)   : {webp_total:8.1f} Ko  "
       f"({100 - webp_total / before_total * 100:.0f} % economises)")
 print(f"Replis         : {fallback_total:8.1f} Ko  (non servis aux navigateurs modernes)")
 
-print("\nA reporter dans index.html :")
+print("\nA reporter dans src/index.html :")
 for nom, w, h, ext, mode in rapport:
     print(f"  {nom:<14} {w:>4}x{h:<4} repli .{ext:<4} cadrage {mode}")

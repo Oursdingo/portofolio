@@ -14,25 +14,12 @@ const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Effet machine à écrire. Remplace Typed.js (~12 Ko) par une vingtaine de lignes. */
 function typewriter(el) {
-  const lireRoles = () => (el.dataset.roles || "").split("|").filter(Boolean);
-  let words = lireRoles();
+  const words = (el.dataset.roles || "").split("|").filter(Boolean);
   if (words.length < 2) return;
 
   let wordIndex = 0;
   let charCount = words[0].length;
   let deleting = true;
-  let minuterie = null;
-
-  // Changement de langue : on repart du premier rôle, affiché en entier.
-  document.addEventListener("langchange", () => {
-    clearTimeout(minuterie);
-    words = lireRoles();
-    wordIndex = 0;
-    charCount = words[0].length;
-    deleting = true;
-    el.textContent = words[0];
-    minuterie = setTimeout(tick, 1800);
-  });
 
   const tick = () => {
     const word = words[wordIndex];
@@ -48,10 +35,10 @@ function typewriter(el) {
       wordIndex = (wordIndex + 1) % words.length;
       delay = 300;
     }
-    minuterie = setTimeout(tick, delay);
+    setTimeout(tick, delay);
   };
 
-  minuterie = setTimeout(tick, 2200);
+  setTimeout(tick, 2200);
 }
 
 /**
@@ -63,8 +50,8 @@ function typewriter(el) {
  * garde l'empilement vertical sans qu'aucune règle ne parte en débordement.
  *
  * `gsap.matchMedia` défait tout ça automatiquement quand la condition
- * cesse d'être vraie — rotation d'un mobile, redimensionnement d'une
- * fenêtre — y compris le retrait de la classe.
+ * cesse d'être vraie (rotation d'un mobile, redimensionnement d'une
+ * fenêtre), y compris le retrait de la classe.
  */
 function initHorizontalProjects(gsap, ScrollTrigger) {
   const section = document.querySelector("#projets");
@@ -81,7 +68,7 @@ function initHorizontalProjects(gsap, ScrollTrigger) {
 
   // Distance de défilement par panneau, en fraction de la HAUTEUR de fenêtre.
   //
-  // La caler sur la largeur — ce que je faisais d'abord — rend la traversée
+  // La caler sur la largeur (ce que je faisais d'abord) rend la traversée
   // d'autant plus longue que l'écran est large, alors que l'effort ressenti
   // se compte en hauteurs d'écran. Sur un 1585 px de large, les 10 projets
   // demandaient 8,7 hauteurs ; rapportés à la hauteur ils en demandent 5,4,
@@ -157,7 +144,7 @@ export function initAnimations() {
 
   const { gsap, ScrollTrigger } = window;
   if (!gsap || !ScrollTrigger) {
-    console.warn("GSAP indisponible — le site reste entièrement utilisable.");
+    console.warn("GSAP indisponible : le site reste entièrement utilisable.");
     return;
   }
 

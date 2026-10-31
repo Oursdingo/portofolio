@@ -1,5 +1,5 @@
 /* ============================================================
-   base.css — reset, jetons, typographie, utilitaires
+   base.css : reset, jetons, typographie, utilitaires
 
    Les polices sont chargees par <link> dans le <head>, pas par
    @import ici : un @import serialise les requetes

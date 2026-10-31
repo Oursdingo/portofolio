@@ -1,5 +1,5 @@
 /* ============================================================
-   components.css — boutons, icônes, cartes, badges, formulaire
+   components.css : boutons, icônes, cartes, badges, formulaire
    ============================================================ */
 
 .icon {
@@ -560,7 +560,7 @@
 }
 
 /* ============================================================
-   Projets — piste de panneaux
+   Projets : piste de panneaux
 
    Etat par defaut : piste VERTICALE. La bascule horizontale est ajoutee
    par animations.js via la classe .projects--horizontal, et seulement
@@ -658,7 +658,7 @@
 }
 
 /* Panneau sans capture : degrade + monogramme.
-   Plus utilise aujourd'hui — les dix projets ont une capture — mais
+   Plus utilise aujourd'hui (les dix projets ont une capture), mais
    conserve pour le prochain projet qui arriverait sans visuel. */
 .panel__visual--mono {
   display: grid;

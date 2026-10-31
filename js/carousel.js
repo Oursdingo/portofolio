@@ -121,9 +121,6 @@ export function initCarousel() {
     }
   });
 
-  // Titre du service courant traduit : on met l'annonce à jour.
-  document.addEventListener("langchange", () => afficher(index));
-
   afficher(0);
   demarrer();
 }

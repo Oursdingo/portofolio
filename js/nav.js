@@ -3,7 +3,7 @@
  *
  * La surbrillance de la section active est gérée par ScrollTrigger dans
  * animations.js, pas ici : recalculer la position de chaque section à chaque
- * pixel défilé — ce que faisait l'ancien app.js — coûte cher pour rien.
+ * pixel défilé (ce que faisait l'ancien app.js) coûte cher pour rien.
  */
 import { t } from "./i18n.js";
 
@@ -27,13 +27,7 @@ export function initNav() {
     burger.setAttribute("aria-label", t(open ? "nav.close" : "nav.open"));
   });
 
-  // Libellé dans la langue courante, dès maintenant puis à chaque changement.
-  const majLibelle = () => {
-    const open = nav.classList.contains("is-open");
-    burger.setAttribute("aria-label", t(open ? "nav.close" : "nav.open"));
-  };
-  majLibelle();
-  document.addEventListener("langchange", majLibelle);
+  burger.setAttribute("aria-label", t("nav.open"));
 
   nav.querySelectorAll(".nav__link").forEach((link) => {
     link.addEventListener("click", closeMenu);
