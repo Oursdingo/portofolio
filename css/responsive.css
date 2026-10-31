@@ -11,6 +11,10 @@
 }
 
 @media (max-width: 1024px) {
+  .nav {
+    gap: var(--space-4);
+  }
+
   .hero__inner,
   .about,
   .contact {
@@ -30,7 +34,9 @@
   }
 }
 
-@media (max-width: 860px) {
+/* Sous 960 px, le menu francais ne tient plus sur une ligne avec le logo
+   et les boutons : on passe au burger. */
+@media (max-width: 960px) {
   .burger {
     display: inline-flex;
   }
@@ -67,7 +73,9 @@
   .nav__link.is-active {
     color: var(--accent);
   }
+}
 
+@media (max-width: 860px) {
   .section {
     padding-block: var(--space-16);
   }
